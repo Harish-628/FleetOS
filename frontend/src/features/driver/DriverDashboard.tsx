@@ -107,7 +107,7 @@ export const DriverDashboard: React.FC = () => {
 
       // Auto-select today confirmed slot if none selected yet
       if (!selectedSlotId && slots.length > 0) {
-        const todaySlot = slots.find((s) => s.status === 'confirmed');
+        const todaySlot = slots.find((s: LocalCalendarSlot) => s.status === 'confirmed');
         if (todaySlot) {
           setSelectedSlotId(todaySlot.id);
           setCustomerName(todaySlot.customer_name);
