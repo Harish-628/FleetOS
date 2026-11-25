@@ -267,16 +267,16 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
   const selectedDayEventMatches = selectedDay ? getEventMatchesForDay(selectedDay.date) : [];
 
   return (
-    <div className={`flex flex-col bg-[#090D16] text-[#DFE2EF] rounded-xl border border-[#1E293B] shadow-2xl overflow-hidden ${isModal ? 'max-h-[90vh]' : 'w-full'}`}>
+    <div className={`flex flex-col bg-white dark:bg-zinc-900 text-slate-900 dark:text-zinc-100 rounded-lg border border-slate-200 dark:border-zinc-800 shadow-sm overflow-hidden ${isModal ? 'max-h-[90vh]' : 'w-full'}`}>
       {/* 1. Header Toolbar */}
-      <div className="px-4 py-3 bg-[#0F172A] border-b border-[#1E293B] flex items-center justify-between">
+      <div className="px-4 py-3 bg-slate-50 dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 flex items-center justify-between">
         <div className="flex items-center space-x-2.5">
-          <CalendarIcon className="w-5 h-5 text-[#10B981]" />
+          <CalendarIcon className="w-5 h-5 text-teal-700 dark:text-teal-400" />
           <div>
-            <h2 className="text-sm md:text-base font-bold text-white tracking-tight">
+            <h2 className="text-sm md:text-base font-bold text-slate-900 dark:text-zinc-50 tracking-tight">
               {language === 'ta' ? monthNamesTa[month] : monthNamesEn[month]} {year}
             </h2>
-            <div className="text-[11px] text-slate-400 font-mono">
+            <div className="text-[11px] text-slate-500 dark:text-zinc-400 font-mono">
               {t.fullMonthCalendarTitle}
             </div>
           </div>
@@ -285,20 +285,20 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
         <div className="flex items-center space-x-1.5">
           <button
             onClick={handlePrevMonth}
-            className="p-1.5 rounded-lg bg-[#1E293B] text-slate-300 hover:text-white hover:bg-slate-700 transition"
+            className="p-1.5 rounded-md bg-white dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 border border-slate-200 dark:border-zinc-700 hover:bg-slate-100 dark:hover:bg-zinc-700 transition"
             title={t.prevMonth}
           >
             <ChevronLeft className="w-4 h-4" />
           </button>
           <button
             onClick={() => setCurrentDate(new Date())}
-            className="px-2.5 py-1 text-xs font-mono font-semibold rounded bg-[#10B981]/20 text-[#10B981] hover:bg-[#10B981]/30 transition"
+            className="px-2.5 py-1 text-xs font-mono font-semibold rounded-md bg-teal-50 dark:bg-teal-950/50 text-teal-700 dark:text-teal-400 border border-teal-200 dark:border-teal-800 hover:bg-teal-100 dark:hover:bg-teal-900/60 transition"
           >
             {t.todayLabel}
           </button>
           <button
             onClick={handleNextMonth}
-            className="p-1.5 rounded-lg bg-[#1E293B] text-slate-300 hover:text-white hover:bg-slate-700 transition"
+            className="p-1.5 rounded-md bg-white dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 border border-slate-200 dark:border-zinc-700 hover:bg-slate-100 dark:hover:bg-zinc-700 transition"
             title={t.nextMonth}
           >
             <ChevronRight className="w-4 h-4" />
@@ -306,7 +306,7 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
           {onClose && (
             <button
               onClick={onClose}
-              className="p-1.5 ml-2 rounded-lg bg-red-950/40 text-red-400 hover:text-red-200 transition"
+              className="p-1.5 ml-2 rounded-md bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-400 border border-rose-200 dark:border-rose-900/50 hover:bg-rose-100 dark:hover:bg-rose-900/80 transition"
               title={t.closeCalendarBtn}
             >
               <X className="w-4 h-4" />
@@ -316,16 +316,16 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
       </div>
 
       {/* 2. Weekday Header */}
-      <div className="grid grid-cols-7 bg-[#0B111E] border-b border-[#1E293B] text-center text-[11px] font-mono font-bold text-slate-400 py-2">
+      <div className="grid grid-cols-7 bg-slate-100 dark:bg-zinc-950/80 border-b border-slate-200 dark:border-zinc-800 text-center text-[11px] font-mono font-semibold text-slate-600 dark:text-zinc-400 py-2">
         {(language === 'ta' ? weekdayNamesTa : weekdayNamesEn).map((dName, idx) => (
-          <div key={idx} className={idx === 0 ? 'text-rose-400' : ''}>
+          <div key={idx} className={idx === 0 ? 'text-rose-600 dark:text-rose-400 font-bold' : ''}>
             {dName}
           </div>
         ))}
       </div>
 
       {/* 3. Monthly Days Grid */}
-      <div className="grid grid-cols-7 gap-px bg-[#1E293B] overflow-y-auto">
+      <div className="grid grid-cols-7 gap-px bg-slate-200 dark:bg-zinc-800 overflow-y-auto">
         {daysGrid.map((item, index) => {
           const isToday =
             item.date.getDate() === new Date().getDate() &&
@@ -339,25 +339,27 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
               key={index}
               onClick={() => handleDayClick(item)}
               className={`min-h-[90px] md:min-h-[110px] p-1.5 md:p-2 cursor-pointer transition flex flex-col justify-between ${
-                item.isCurrentMonth ? 'bg-[#090D16] hover:bg-[#111A2E]' : 'bg-[#060910]/80 text-slate-600'
-              } ${isToday ? 'ring-2 ring-[#10B981] ring-inset bg-[#0F1C2E]' : ''}`}
+                item.isCurrentMonth
+                  ? 'bg-white dark:bg-zinc-900 hover:bg-slate-50 dark:hover:bg-zinc-800/80'
+                  : 'bg-slate-50/70 dark:bg-zinc-950/60 text-slate-400 dark:text-zinc-600'
+              } ${isToday ? 'ring-2 ring-teal-600 dark:ring-teal-500 ring-inset bg-teal-50/40 dark:bg-teal-950/20' : ''}`}
             >
               {/* Top row: Gregorian Day & Auspicious icon */}
               <div className="flex items-center justify-between">
                 <span
-                  className={`text-xs md:text-sm font-bold font-mono ${
+                  className={`text-xs md:text-sm font-bold font-mono tabular-nums ${
                     isToday
-                      ? 'w-6 h-6 rounded-full bg-[#10B981] text-black flex items-center justify-center'
+                      ? 'w-6 h-6 rounded-full bg-teal-700 dark:bg-teal-600 text-white flex items-center justify-center'
                       : item.isCurrentMonth
-                      ? 'text-white'
-                      : 'text-slate-600'
+                      ? 'text-slate-900 dark:text-zinc-100'
+                      : 'text-slate-400 dark:text-zinc-600'
                   }`}
                 >
                   {item.tamil.gregorianDay}
                 </span>
 
                 {item.tamil.isAuspicious && (
-                  <span title={t.auspiciousDayBadge} className="text-[#F59E0B]">
+                  <span title={t.auspiciousDayBadge} className="text-amber-500">
                     <Sparkles className="w-3 h-3 fill-current" />
                   </span>
                 )}
@@ -365,12 +367,12 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
 
               {/* Middle row: Tamil Month & Date + Nakshatra */}
               <div className="my-1 space-y-0.5">
-                <div className="text-[10px] md:text-[11px] font-semibold text-emerald-400 leading-tight">
+                <div className="text-[10px] md:text-[11px] font-semibold text-teal-700 dark:text-teal-400 leading-tight">
                   {language === 'ta'
                     ? `${item.tamil.tamilMonthNameTa} ${item.tamil.tamilDay}`
                     : `${item.tamil.tamilMonthNameEn} ${item.tamil.tamilDay}`}
                 </div>
-                <div className="text-[9px] md:text-[10px] text-slate-400 truncate leading-tight">
+                <div className="text-[9px] md:text-[10px] text-slate-500 dark:text-zinc-400 truncate leading-tight">
                   {language === 'ta' ? item.tamil.nakshatraTa : item.tamil.nakshatraEn}
                 </div>
               </div>
@@ -379,11 +381,11 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
               <div className="space-y-1 mt-auto">
                 {dayMatches.slice(0, 2).map((match) => {
                   const ev = match.event;
-                  let badgeColors = 'bg-emerald-950/80 border-emerald-500/80 text-emerald-200';
+                  let badgeColors = 'bg-teal-50 dark:bg-teal-950/80 border-teal-300 dark:border-teal-700 text-teal-800 dark:text-teal-200';
                   if (ev.color_id === '5' || ev.status === 'INQUIRY') {
-                    badgeColors = 'bg-amber-950/80 border-amber-500/80 text-amber-200';
+                    badgeColors = 'bg-amber-50 dark:bg-amber-950/80 border-amber-300 dark:border-amber-700 text-amber-800 dark:text-amber-200';
                   } else if (ev.color_id === '11' || ev.status === 'MAINTENANCE') {
-                    badgeColors = 'bg-rose-950/80 border-rose-500/80 text-rose-200';
+                    badgeColors = 'bg-rose-50 dark:bg-rose-950/80 border-rose-300 dark:border-rose-700 text-rose-800 dark:text-rose-200';
                   }
 
                   // Multi-day indicator icon & progress
@@ -420,7 +422,7 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                   );
                 })}
                 {dayMatches.length > 2 && (
-                  <div className="text-[8px] text-slate-400 font-mono text-center">
+                  <div className="text-[8px] text-slate-500 dark:text-zinc-400 font-mono text-center">
                     {t.moreEventsCount(dayMatches.length - 2)}
                   </div>
                 )}
@@ -431,27 +433,27 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
       </div>
 
       {/* 4. Legend Footer */}
-      <div className="px-4 py-2.5 bg-[#0F172A] border-t border-[#1E293B] text-[11px] font-mono flex flex-wrap items-center justify-between gap-3 text-slate-400">
+      <div className="px-4 py-2.5 bg-slate-50 dark:bg-zinc-900 border-t border-slate-200 dark:border-zinc-800 text-[11px] font-mono flex flex-wrap items-center justify-between gap-3 text-slate-600 dark:text-zinc-400">
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center space-x-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#10B981]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-teal-600 dark:bg-teal-400" />
             <span>{t.slotConfirmed}</span>
           </div>
           <div className="flex items-center space-x-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
             <span>{t.slotPending}</span>
           </div>
           <div className="flex items-center space-x-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]" />
+            <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
             <span>{t.slotMaintenance}</span>
           </div>
-          <div className="flex items-center space-x-1.5 pl-2 border-l border-slate-700">
-            <span className="text-slate-300 font-bold">➔ ═ 🏁</span>
+          <div className="flex items-center space-x-1.5 pl-2 border-l border-slate-300 dark:border-zinc-700">
+            <span className="text-slate-800 dark:text-zinc-200 font-bold">➔ ═ 🏁</span>
             <span>{t.multiDayTourLegend}</span>
           </div>
         </div>
 
-        <div className="flex items-center space-x-1 text-[#F59E0B]">
+        <div className="flex items-center space-x-1 text-amber-600 dark:text-amber-400">
           <Sparkles className="w-3.5 h-3.5 fill-current" />
           <span>{t.auspiciousDayBadge}</span>
         </div>
@@ -459,18 +461,18 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
 
       {/* 5. Date Click Booking Modal (Multi-Day Duration & Complete Translations) */}
       {isBookingModalOpen && selectedDay && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 bg-black/80 backdrop-blur-sm">
-          <div className="cockpit-card w-full max-w-xl bg-[#0F172A] border border-[#1E293B] rounded-2xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-4 bg-slate-900/60 dark:bg-black/75">
+          <div className="w-full max-w-xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-lg shadow-xl overflow-hidden max-h-[92vh] flex flex-col">
             {/* Modal Header */}
-            <div className="p-4 border-b border-[#1E293B] flex items-center justify-between bg-[#131D31]">
+            <div className="p-4 border-b border-slate-200 dark:border-zinc-800 flex items-center justify-between bg-slate-50 dark:bg-zinc-950">
               <div>
-                <h3 className="text-base font-bold text-white flex items-center space-x-2">
+                <h3 className="text-base font-bold text-slate-900 dark:text-zinc-50 flex items-center space-x-2">
                   <span>{t.tourDetailsModalTitle}</span>
-                  <span className="text-[#10B981]">
+                  <span className="text-teal-700 dark:text-teal-400 font-mono">
                     {formatLocalizedDate(selectedDay.date, language)}
                   </span>
                 </h3>
-                <div className="text-xs text-[#10B981] font-mono mt-0.5">
+                <div className="text-xs text-teal-700 dark:text-teal-400 font-mono mt-0.5">
                   {language === 'ta'
                     ? `${selectedDay.tamil.tamilMonthNameTa} ${selectedDay.tamil.tamilDay} • ${t.nakshatraLabel}: ${selectedDay.tamil.nakshatraTa} • ${selectedDay.tamil.tithiTa}`
                     : `${selectedDay.tamil.tamilMonthNameEn} ${selectedDay.tamil.tamilDay} • ${t.nakshatraLabel}: ${selectedDay.tamil.nakshatraEn} • ${selectedDay.tamil.tithiEn}`}
@@ -479,7 +481,7 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
 
               <button
                 onClick={() => setIsBookingModalOpen(false)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white bg-[#1E293B] transition"
+                className="p-1.5 rounded-md text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-zinc-800 transition"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -489,11 +491,11 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
             <div className="p-4 overflow-y-auto space-y-4">
               {/* Existing Bookings on this Day */}
               <div className="space-y-2">
-                <div className="text-xs font-mono font-bold text-slate-300">
+                <div className="text-xs font-mono font-bold text-slate-700 dark:text-zinc-300">
                   {t.toursOnDate(selectedDayEventMatches.length)}:
                 </div>
                 {selectedDayEventMatches.length === 0 ? (
-                  <div className="p-3 rounded-lg bg-[#090D16] border border-[#1E293B] text-xs text-slate-400 font-mono text-center">
+                  <div className="p-3 rounded-md bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 text-xs text-slate-500 dark:text-zinc-400 font-mono text-center">
                     {t.noBookingsOnDate}
                   </div>
                 ) : (
@@ -503,23 +505,23 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                       return (
                         <div
                           key={ev.id}
-                          className="p-3 rounded-lg bg-[#090D16] border border-[#1E293B] text-xs space-y-1.5 font-mono"
+                          className="p-3 rounded-md bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 text-xs space-y-1.5 font-mono"
                         >
                           <div className="flex items-center justify-between">
-                            <span className="text-white font-bold">{ev.title}</span>
+                            <span className="text-slate-900 dark:text-zinc-100 font-bold">{ev.title}</span>
                             <div className="flex items-center space-x-2">
                               {match.totalDays > 1 && (
-                                <span className="text-[10px] px-2 py-0.5 rounded font-bold bg-cyan-950 text-cyan-400 border border-cyan-800">
+                                <span className="text-[10px] px-2 py-0.5 rounded font-bold bg-teal-50 dark:bg-teal-950/60 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800">
                                   {t.dayProgressBadge(match.dayIndex, match.totalDays)} ({t.tourDurationDays(match.totalDays)})
                                 </span>
                               )}
                               <span
                                 className={`text-[10px] px-2 py-0.5 rounded font-bold ${
                                   ev.color_id === '10'
-                                    ? 'bg-[#10B981]/20 text-[#10B981]'
+                                    ? 'bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-400 border border-teal-200 dark:border-teal-800'
                                     : ev.color_id === '5'
-                                    ? 'bg-[#F59E0B]/20 text-[#F59E0B]'
-                                    : 'bg-red-900/30 text-red-300'
+                                    ? 'bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 border border-amber-200 dark:border-amber-800'
+                                    : 'bg-rose-50 dark:bg-rose-950/60 text-rose-700 dark:text-rose-400 border border-rose-200 dark:border-rose-800'
                                 }`}
                               >
                                 {ev.status}
@@ -527,28 +529,28 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                             </div>
                           </div>
 
-                          <div className="text-slate-400 flex items-center space-x-1 text-[11px]">
-                            <Clock className="w-3.5 h-3.5 text-[#10B981]" />
+                          <div className="text-slate-500 dark:text-zinc-400 flex items-center space-x-1 text-[11px]">
+                            <Clock className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
                             <span>
                               {formatLocalizedDateTime(ev.start_time, language)} ➔ {formatLocalizedDateTime(ev.end_time, language)}
                             </span>
                           </div>
 
-                          <div className="text-slate-300 flex items-center space-x-1">
-                            <User className="w-3.5 h-3.5 text-slate-500" />
+                          <div className="text-slate-700 dark:text-zinc-300 flex items-center space-x-1">
+                            <User className="w-3.5 h-3.5 text-slate-400" />
                             <span>{t.customerContactLabel}: {ev.customer_name}</span>
                           </div>
 
                           {ev.destination && (
-                            <div className="text-slate-400 flex items-center space-x-1">
-                              <MapPin className="w-3.5 h-3.5 text-slate-500" />
+                            <div className="text-slate-500 dark:text-zinc-400 flex items-center space-x-1">
+                              <MapPin className="w-3.5 h-3.5 text-slate-400" />
                               <span>{t.routeLabel}: {ev.destination}</span>
                             </div>
                           )}
 
                           {ev.phone && (
-                            <div className="text-slate-400 flex items-center space-x-1">
-                              <Phone className="w-3.5 h-3.5 text-slate-500" />
+                            <div className="text-slate-500 dark:text-zinc-400 flex items-center space-x-1">
+                              <Phone className="w-3.5 h-3.5 text-slate-400" />
                               <span>{t.phoneLabel}: {ev.phone}</span>
                             </div>
                           )}
@@ -560,14 +562,14 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
               </div>
 
               {/* Add New Tour Booking Form with Duration Selector */}
-              <div className="pt-3 border-t border-[#1E293B]">
-                <div className="text-xs font-mono font-bold text-[#10B981] mb-3 flex items-center space-x-1.5">
+              <div className="pt-3 border-t border-slate-200 dark:border-zinc-800">
+                <div className="text-xs font-mono font-bold text-teal-700 dark:text-teal-400 mb-3 flex items-center space-x-1.5">
                   <Plus className="w-4 h-4" />
                   <span>{t.addTourBtn}</span>
                 </div>
 
                 {formError && (
-                  <div className="mb-3 p-2.5 rounded bg-red-900/40 border border-red-500 text-red-200 text-xs font-mono">
+                  <div className="mb-3 p-2.5 rounded-md bg-rose-50 dark:bg-rose-950/40 border border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-200 text-xs font-mono">
                     {formError}
                   </div>
                 )}
@@ -575,7 +577,7 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                 <form onSubmit={handleCreateBooking} className="space-y-3.5">
                   {/* Quick Duration Buttons */}
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-300 mb-1.5 font-mono">
+                    <label className="block text-[11px] font-semibold text-slate-700 dark:text-zinc-300 mb-1.5 font-mono">
                       {t.quickDurationSelect}
                     </label>
                     <div className="grid grid-cols-4 sm:grid-cols-7 gap-1.5">
@@ -584,10 +586,10 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                           key={dCount}
                           type="button"
                           onClick={() => handleSelectDuration(dCount)}
-                          className={`py-1.5 px-2 rounded-lg text-xs font-mono font-bold transition flex flex-col items-center justify-center ${
+                          className={`py-1.5 px-2 rounded-md text-xs font-mono font-bold transition flex flex-col items-center justify-center ${
                             durationDays === dCount
-                              ? 'bg-[#10B981] text-black shadow-lg scale-105'
-                              : 'bg-[#1E293B] text-slate-300 hover:bg-[#334155]'
+                              ? 'bg-teal-700 dark:bg-teal-600 text-white shadow-xs'
+                              : 'bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 hover:bg-slate-200 dark:hover:bg-zinc-700 border border-slate-200 dark:border-zinc-700'
                           }`}
                         >
                           <span>{dCount} {language === 'ta' ? 'நாள்' : 'D'}</span>
@@ -597,9 +599,9 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                   </div>
 
                   {/* Multi-Day Date Range Pickers */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 rounded-xl bg-[#090D16] border border-[#1E293B]">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 rounded-lg bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800">
                     <div>
-                      <label className="block text-[11px] font-semibold text-slate-300 mb-1 font-mono">
+                      <label className="block text-[11px] font-semibold text-slate-700 dark:text-zinc-300 mb-1 font-mono">
                         {t.tourStartDateLabel} *
                       </label>
                       <input
@@ -607,12 +609,12 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                         value={startDateStr}
                         onChange={(e) => handleStartDateChange(e.target.value)}
                         required
-                        className="cockpit-input w-full p-2 text-xs text-white bg-[#0F172A] border border-[#1E293B] rounded-lg font-mono"
+                        className="w-full p-2 text-base md:text-xs text-slate-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-md font-mono"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold text-slate-300 mb-1 font-mono">
+                      <label className="block text-[11px] font-semibold text-slate-700 dark:text-zinc-300 mb-1 font-mono">
                         {t.tourEndDateLabel} *
                       </label>
                       <input
@@ -621,39 +623,39 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                         min={startDateStr}
                         onChange={(e) => handleEndDateChange(e.target.value)}
                         required
-                        className="cockpit-input w-full p-2 text-xs text-white bg-[#0F172A] border border-[#1E293B] rounded-lg font-mono"
+                        className="w-full p-2 text-base md:text-xs text-slate-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-md font-mono"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold text-slate-300 mb-1 font-mono">
+                      <label className="block text-[11px] font-semibold text-slate-700 dark:text-zinc-300 mb-1 font-mono">
                         {t.tourStartTimeLabel}
                       </label>
                       <input
                         type="time"
                         value={startTime}
                         onChange={(e) => setStartTime(e.target.value)}
-                        className="cockpit-input w-full p-2 text-xs text-white bg-[#0F172A] border border-[#1E293B] rounded-lg font-mono"
+                        className="w-full p-2 text-base md:text-xs text-slate-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-md font-mono"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold text-slate-300 mb-1 font-mono">
+                      <label className="block text-[11px] font-semibold text-slate-700 dark:text-zinc-300 mb-1 font-mono">
                         {t.tourEndTimeLabel}
                       </label>
                       <input
                         type="time"
                         value={endTime}
                         onChange={(e) => setEndTime(e.target.value)}
-                        className="cockpit-input w-full p-2 text-xs text-white bg-[#0F172A] border border-[#1E293B] rounded-lg font-mono"
+                        className="w-full p-2 text-base md:text-xs text-slate-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-md font-mono"
                       />
                     </div>
 
                     {/* Duration Summary Badge */}
                     <div className="col-span-full pt-1">
-                      <div className="p-2 rounded-lg bg-emerald-950/60 border border-emerald-800 text-xs font-mono text-emerald-300 flex items-center justify-between">
+                      <div className="p-2 rounded-md bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-xs font-mono text-teal-800 dark:text-teal-300 flex items-center justify-between">
                         <div className="flex items-center space-x-1.5">
-                          <ArrowRight className="w-3.5 h-3.5 text-[#10B981]" />
+                          <ArrowRight className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
                           <span className="font-bold">
                             {t.multiDayTourSummary(
                               durationDays,
@@ -662,7 +664,7 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                             )}
                           </span>
                         </div>
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#10B981]/20 text-[#10B981]">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-600 text-white">
                           {t.tourDurationDays(durationDays)}
                         </span>
                       </div>
@@ -670,7 +672,7 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-300 mb-1 font-mono">
+                    <label className="block text-[11px] font-semibold text-slate-700 dark:text-zinc-300 mb-1 font-mono">
                       {t.tourTitleLabel} *
                     </label>
                     <input
@@ -679,12 +681,12 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                       onChange={(e) => setTourTitle(e.target.value)}
                       required
                       placeholder={t.tourPlaceholder}
-                      className="cockpit-input w-full p-2.5 text-xs text-white bg-[#090D16] border border-[#1E293B] rounded-lg font-mono"
+                      className="w-full p-2 text-base md:text-xs text-slate-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-md font-mono"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-300 mb-1 font-mono">
+                    <label className="block text-[11px] font-semibold text-slate-700 dark:text-zinc-300 mb-1 font-mono">
                       {t.tourCustomerLabel} *
                     </label>
                     <input
@@ -693,13 +695,13 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                       onChange={(e) => setCustomerName(e.target.value)}
                       required
                       placeholder={t.customerPlaceholder}
-                      className="cockpit-input w-full p-2.5 text-xs text-white bg-[#090D16] border border-[#1E293B] rounded-lg font-mono"
+                      className="w-full p-2 text-base md:text-xs text-slate-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-md font-mono"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-[11px] font-semibold text-slate-300 mb-1 font-mono">
+                      <label className="block text-[11px] font-semibold text-slate-700 dark:text-zinc-300 mb-1 font-mono">
                         {t.tourDestinationLabel}
                       </label>
                       <input
@@ -707,12 +709,12 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                         value={destination}
                         onChange={(e) => setDestination(e.target.value)}
                         placeholder={t.destinationPlaceholder}
-                        className="cockpit-input w-full p-2.5 text-xs text-white bg-[#090D16] border border-[#1E293B] rounded-lg font-mono"
+                        className="w-full p-2 text-base md:text-xs text-slate-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-md font-mono"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold text-slate-300 mb-1 font-mono">
+                      <label className="block text-[11px] font-semibold text-slate-700 dark:text-zinc-300 mb-1 font-mono">
                         {t.tourPhoneLabel}
                       </label>
                       <input
@@ -720,19 +722,19 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="+91 98450 12345"
-                        className="cockpit-input w-full p-2.5 text-xs text-white bg-[#090D16] border border-[#1E293B] rounded-lg font-mono"
+                        className="w-full p-2 text-base md:text-xs text-slate-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-md font-mono"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-semibold text-slate-300 mb-1 font-mono">
+                    <label className="block text-[11px] font-semibold text-slate-700 dark:text-zinc-300 mb-1 font-mono">
                       {t.tourStatusLabel}
                     </label>
                     <select
                       value={status}
                       onChange={(e) => setStatus(e.target.value as any)}
-                      className="cockpit-input w-full p-2.5 text-xs text-white bg-[#090D16] border border-[#1E293B] rounded-lg font-mono"
+                      className="w-full p-2 text-base md:text-xs text-slate-900 dark:text-zinc-100 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-md font-mono"
                     >
                       <option value="CONFIRMED">🟢 {t.slotConfirmed} (Color 10)</option>
                       <option value="INQUIRY">🟡 {t.slotPending} (Color 5)</option>
@@ -744,14 +746,14 @@ export const FullMonthCalendar: React.FC<FullMonthCalendarProps> = ({ onClose, i
                     <button
                       type="button"
                       onClick={() => setIsBookingModalOpen(false)}
-                      className="w-1/3 py-2.5 rounded-xl border border-[#1E293B] text-slate-300 hover:bg-[#1E293B] text-xs font-bold font-mono transition"
+                      className="w-1/3 py-2.5 rounded-md border border-slate-300 dark:border-zinc-700 text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 text-xs font-semibold font-mono transition"
                     >
                       {t.cancelBtn}
                     </button>
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-2/3 cockpit-btn-primary min-h-[46px] text-xs font-bold tracking-wide flex items-center justify-center space-x-2"
+                      className="w-2/3 min-h-[46px] rounded-md bg-teal-700 hover:bg-teal-800 dark:bg-teal-600 dark:hover:bg-teal-500 text-white text-xs font-semibold tracking-wide flex items-center justify-center space-x-2 transition disabled:opacity-50"
                     >
                       <span>{isSubmitting ? t.savingTourBooking : t.saveTourBookingBtn}</span>
                     </button>

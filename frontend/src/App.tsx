@@ -5,6 +5,7 @@ import { DriverDashboard } from './features/driver/DriverDashboard';
 import { AdminPortal } from './features/admin/AdminPortal';
 import { DriverQrModal } from './components/DriverQrModal';
 import { LanguageProvider } from './i18n/LanguageContext';
+import { ThemeProvider } from './hooks/useTheme';
 
 export function AppContent() {
   const [currentView, setCurrentView] = useState<'driver' | 'admin'>('driver');
@@ -29,7 +30,7 @@ export function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#090D16] text-[#DFE2EF] flex flex-col">
+    <div className="min-h-dvh bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-50 flex flex-col pb-safe transition-colors duration-150">
       {/* 1. Persistent Top Sync Status Badge */}
       <SyncStatusBadge />
 
@@ -60,9 +61,11 @@ export function AppContent() {
 
 export function App() {
   return (
-    <LanguageProvider>
-      <AppContent />
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 

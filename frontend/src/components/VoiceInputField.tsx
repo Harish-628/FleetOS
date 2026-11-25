@@ -127,14 +127,14 @@ export const VoiceInputField: React.FC<VoiceInputFieldProps> = ({
   return (
     <div className="space-y-1.5">
       <div className="flex items-center justify-between">
-        <label className="flex items-center space-x-1.5 text-xs font-bold text-slate-300 uppercase tracking-wider">
+        <label className="flex items-center space-x-1.5 text-xs font-semibold text-slate-700 dark:text-zinc-300 uppercase tracking-wider">
           {icon && <span className="text-sm mr-0.5 inline-flex items-center">{icon}</span>}
           <span>{label}</span>
-          {required && <span className="text-[#EF4444]">*</span>}
+          {required && <span className="text-rose-500">*</span>}
         </label>
         {isListening && (
-          <span className="flex items-center space-x-1.5 text-xs text-[#EF4444] font-bold animate-pulse">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#EF4444]"></span>
+          <span className="flex items-center space-x-1.5 text-xs text-rose-600 dark:text-rose-400 font-bold animate-pulse">
+            <span className="w-2 h-2 rounded-full bg-rose-600"></span>
             <span>🎙️ {t.speechListening}</span>
           </span>
         )}
@@ -157,34 +157,35 @@ export const VoiceInputField: React.FC<VoiceInputFieldProps> = ({
           min={min}
           step={step}
           inputMode={inputMode || (type === 'number' ? 'numeric' : 'text')}
-          className={`w-full min-h-[56px] pl-4 pr-16 bg-[#090D16] border ${
+          className={`w-full min-h-[50px] pl-3.5 pr-14 bg-white dark:bg-zinc-900 border ${
             error
-              ? 'border-[#EF4444] focus:ring-[#EF4444]'
+              ? 'border-rose-500 focus:ring-rose-500 focus:border-rose-500'
               : isListening
-              ? 'border-[#10B981] ring-2 ring-[#10B981]/30'
-              : 'border-[#1E293B] focus:border-[#10B981] focus:ring-[#10B981]'
-          } rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-1 text-base ${
-            fontMono ? 'font-mono' : ''
+              ? 'border-teal-600 dark:border-teal-400 ring-2 ring-teal-600/20'
+              : 'border-slate-300 dark:border-zinc-700 focus:border-teal-600 dark:focus:border-teal-500 focus:ring-teal-600 dark:focus:ring-teal-500'
+          } rounded-md text-slate-900 dark:text-zinc-50 placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none focus:ring-1 text-base ${
+            fontMono ? 'font-mono tabular-nums' : ''
           }`}
         />
 
-        {/* 52px Touch Target Microphone Button with clear bilingual caption */}
+        {/* 48px Touch Target Microphone Button with clear bilingual caption */}
         <button
           type="button"
           onClick={toggleListening}
-          className={`absolute right-1 w-[52px] h-[50px] rounded-lg flex flex-col items-center justify-center transition active:scale-90 ${
+          className={`absolute right-1 w-[46px] h-[42px] rounded-md flex flex-col items-center justify-center transition active:scale-95 ${
             isListening
-              ? 'bg-[#EF4444] text-white shadow-lg shadow-red-900/50 animate-pulse'
-              : 'bg-[#1E293B] hover:bg-[#334155] text-slate-300 hover:text-white border border-[#334155]'
+              ? 'bg-rose-600 text-white shadow-xs animate-pulse'
+              : 'bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 text-slate-700 dark:text-zinc-300 border border-slate-200 dark:border-zinc-700'
           }`}
           title={isListening ? 'Stop listening' : t.speechTapToSpeak}
+          aria-label={isListening ? 'Stop listening' : t.speechTapToSpeak}
         >
           {isListening ? (
-            <MicOff className="w-5 h-5 text-white animate-spin" />
+            <MicOff className="w-4 h-4 text-white" />
           ) : (
             <>
-              <Mic className="w-4 h-4 text-[#10B981]" />
-              <span className="text-[9px] font-bold text-[#10B981] mt-0.5 leading-none">
+              <Mic className="w-4 h-4 text-teal-700 dark:text-teal-400" />
+              <span className="text-[9px] font-bold text-teal-700 dark:text-teal-400 mt-0.5 leading-none">
                 {language === 'ta' ? 'பேசுக' : 'Speak'}
               </span>
             </>
@@ -194,7 +195,7 @@ export const VoiceInputField: React.FC<VoiceInputFieldProps> = ({
 
       {/* Quick Denomination Chips for easy one-tap input */}
       {quickAddChips && quickAddChips.length > 0 && (
-        <div className="flex items-center space-x-1.5 overflow-x-auto pt-0.5">
+        <div className="flex items-center space-x-1.5 overflow-x-auto pt-0.5 pb-1">
           {quickAddChips.map((chip) => (
             <button
               key={chip}
@@ -204,7 +205,7 @@ export const VoiceInputField: React.FC<VoiceInputFieldProps> = ({
                 const currentVal = typeof value === 'number' ? value : (Number(value) || 0);
                 onChange(currentVal + chip);
               }}
-              className="px-2.5 py-1 rounded-lg bg-[#0F172A] hover:bg-[#1E293B] border border-[#1E293B] hover:border-[#10B981]/50 text-xs font-mono font-bold text-emerald-400 active:scale-90 transition shadow-sm"
+              className="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700 border border-slate-200 dark:border-zinc-700 hover:border-teal-600 dark:hover:border-teal-500 text-xs font-mono font-semibold text-teal-800 dark:text-teal-300 tabular-nums active:scale-95 transition"
             >
               +₹{chip}
             </button>
@@ -216,7 +217,7 @@ export const VoiceInputField: React.FC<VoiceInputFieldProps> = ({
                 triggerDriverHaptic([20]);
                 onChange('');
               }}
-              className="px-2 py-1 rounded-lg bg-red-950/40 text-red-400 hover:text-red-200 border border-red-900/50 text-xs font-mono font-bold active:scale-90 transition"
+              className="px-2.5 py-1 rounded-md bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/60 border border-rose-200 dark:border-rose-900/50 text-xs font-mono font-medium active:scale-95 transition"
               title="Clear amount"
             >
               ✕ Clear
@@ -226,16 +227,16 @@ export const VoiceInputField: React.FC<VoiceInputFieldProps> = ({
       )}
 
       {speechHint && !error && (
-        <p className="text-[11px] text-[#10B981] font-mono mt-0.5">{speechHint}</p>
+        <p className="text-[11px] text-teal-700 dark:text-teal-400 font-mono mt-0.5">{speechHint}</p>
       )}
 
       {error ? (
-        <p className="flex items-center text-xs text-[#EF4444] mt-1">
+        <p className="flex items-center text-xs text-rose-600 dark:text-rose-400 mt-1">
           <AlertCircle className="w-3.5 h-3.5 mr-1 flex-shrink-0" />
           <span>{error}</span>
         </p>
       ) : helpText ? (
-        <p className="text-[11px] text-slate-400 mt-1">{helpText}</p>
+        <p className="text-[11px] text-slate-500 dark:text-zinc-400 mt-1">{helpText}</p>
       ) : null}
     </div>
   );

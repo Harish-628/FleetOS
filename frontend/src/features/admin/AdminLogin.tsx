@@ -33,27 +33,27 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess }) => {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center p-4">
-      <div className="w-full max-w-md cockpit-card p-6 md:p-8 border-[#1E293B] bg-gradient-to-br from-[#0F172A] to-[#0A0E17] shadow-2xl space-y-6">
+      <div className="w-full max-w-md p-6 md:p-8 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-lg shadow-sm space-y-6">
         <div className="text-center space-y-2">
-          <div className="w-14 h-14 rounded-2xl bg-[#10B981]/15 border border-[#10B981]/30 flex items-center justify-center text-[#10B981] mx-auto">
-            <Lock className="w-7 h-7" />
+          <div className="w-12 h-12 rounded-lg bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 flex items-center justify-center text-teal-700 dark:text-teal-400 mx-auto shadow-xs">
+            <Lock className="w-6 h-6" />
           </div>
-          <h2 className="text-2xl font-bold font-sans text-white tracking-tight">Fleet Admin Portal</h2>
-          <p className="text-xs text-slate-400 font-mono">
+          <h2 className="text-xl md:text-2xl font-bold font-sans text-slate-900 dark:text-zinc-50 tracking-tight">Fleet Admin Portal</h2>
+          <p className="text-xs text-slate-500 dark:text-zinc-400 font-mono">
             Vinoth Travels • TN37aw6052 (23-Seater)
           </p>
         </div>
 
         {error && (
-          <div className="p-3 rounded-xl bg-red-950/40 border border-red-500/80 text-xs text-red-200 font-mono flex items-center space-x-2">
-            <ShieldAlert className="w-4 h-4 flex-shrink-0 text-red-400" />
+          <div className="p-3 rounded-md bg-rose-50 dark:bg-rose-950/40 border border-rose-300 dark:border-rose-800 text-xs text-rose-800 dark:text-rose-200 font-mono flex items-center space-x-2">
+            <ShieldAlert className="w-4 h-4 flex-shrink-0 text-rose-600 dark:text-rose-400" />
             <span>{error}</span>
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-mono font-semibold uppercase text-slate-300 mb-1.5">
+            <label className="block text-xs font-mono font-semibold uppercase text-slate-700 dark:text-zinc-300 mb-1.5">
               Admin Username
             </label>
             <input
@@ -61,13 +61,13 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess }) => {
               required
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="cockpit-input w-full font-mono text-sm"
+              className="w-full p-2.5 text-base md:text-sm font-mono text-slate-900 dark:text-zinc-100 bg-white dark:bg-zinc-950 border border-slate-300 dark:border-zinc-700 rounded-md focus:outline-none focus:border-teal-600 dark:focus:border-teal-500"
               placeholder="admin"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-mono font-semibold uppercase text-slate-300 mb-1.5">
+            <label className="block text-xs font-mono font-semibold uppercase text-slate-700 dark:text-zinc-300 mb-1.5">
               Admin Password
             </label>
             <input
@@ -75,7 +75,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess }) => {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="cockpit-input w-full font-mono text-sm"
+              className="w-full p-2.5 text-base md:text-sm font-mono text-slate-900 dark:text-zinc-100 bg-white dark:bg-zinc-950 border border-slate-300 dark:border-zinc-700 rounded-md focus:outline-none focus:border-teal-600 dark:focus:border-teal-500"
               placeholder="••••••••••••"
             />
           </div>
@@ -83,14 +83,14 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess }) => {
           <button
             type="submit"
             disabled={isLoading}
-            className="cockpit-btn-primary w-full text-sm font-bold tracking-wide flex items-center justify-center space-x-2"
+            className="w-full min-h-[48px] rounded-md bg-teal-700 hover:bg-teal-800 dark:bg-teal-600 dark:hover:bg-teal-500 text-white text-sm font-semibold tracking-wide flex items-center justify-center space-x-2 transition disabled:opacity-50 shadow-xs"
           >
             <span>{isLoading ? 'Verifying Credentials...' : 'Sign In to Operations Console'}</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </form>
 
-        <div className="pt-4 border-t border-[#1E293B] text-center text-[11px] text-slate-500 font-mono">
+        <div className="pt-4 border-t border-slate-200 dark:border-zinc-800 text-center text-[11px] text-slate-500 dark:text-zinc-400 font-mono">
           Protected by Argon2 &amp; HS256 JWT • Session expires in 24 hours
         </div>
       </div>

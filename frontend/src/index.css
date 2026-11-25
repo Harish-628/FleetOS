@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
-    --font-headline: 'Space Grotesk', -apple-system, sans-serif;
+    --font-headline: 'Plus Jakarta Sans', -apple-system, sans-serif;
     --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
     --font-telemetry: 'JetBrains Mono', monospace;
   }
 
   body {
     font-family: var(--font-body);
-    background-color: #090D16;
-    color: #DFE2EF;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
   }
@@ -22,71 +22,125 @@
   .font-mono, .telemetry-val {
     font-family: var(--font-telemetry);
     font-feature-settings: "tnum" 1, "zero" 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-/* Custom Cockpit Component Classes */
+/* Safe area padding for mobile notch and home bar */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* Clean Commercial Fleet ERP Component Classes */
 .cockpit-card {
-  background-color: #0F172A;
-  border: 1.5px solid #1E293B;
-  border-radius: 1rem;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.5rem;
+}
+
+:is(.dark .cockpit-card) {
+  background-color: #18181B;
+  border-color: #27272A;
 }
 
 .cockpit-btn-primary {
-  min-height: 58px;
-  background-color: #10B981;
-  color: #090D16;
-  font-weight: 700;
-  border-radius: 0.75rem;
+  min-height: 48px;
+  background-color: #0F766E;
+  color: #FFFFFF;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: 0.375rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.1s ease, background-color 0.15s ease;
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, transform 0.05s ease;
   user-select: none;
+}
+
+:is(.dark .cockpit-btn-primary) {
+  background-color: #14B8A6;
+  color: #09090B;
+}
+
+.cockpit-btn-primary:hover {
+  background-color: #115E59;
+}
+
+:is(.dark .cockpit-btn-primary:hover) {
+  background-color: #2DD4BF;
 }
 
 .cockpit-btn-primary:active {
-  transform: scale(0.98);
-  background-color: #059669;
+  transform: scale(0.99);
 }
 
 .cockpit-btn-secondary {
-  min-height: 56px;
-  background-color: #1E293B;
-  color: #FFFFFF;
-  border: 1.5px solid #334155;
+  min-height: 48px;
+  background-color: #F1F5F9;
+  color: #0F172A;
+  border: 1px solid #CBD5E1;
   font-weight: 600;
-  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.1s ease, background-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
   user-select: none;
 }
 
-.cockpit-btn-secondary:active {
-  transform: scale(0.98);
-  background-color: #334155;
+:is(.dark .cockpit-btn-secondary) {
+  background-color: #27272A;
+  color: #FAFAFA;
+  border-color: #3F3F46;
+}
+
+.cockpit-btn-secondary:hover {
+  background-color: #E2E8F0;
+}
+
+:is(.dark .cockpit-btn-secondary:hover) {
+  background-color: #3F3F46;
 }
 
 .cockpit-input {
-  min-height: 56px;
-  background-color: #090D16;
-  border: 1.5px solid #334155;
-  border-radius: 0.75rem;
-  padding: 0 1rem;
-  color: #FFFFFF;
-  font-size: 1.05rem;
+  min-height: 48px;
+  background-color: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 0.375rem;
+  padding: 0 0.875rem;
+  color: #0F172A;
+  font-size: 1rem;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+:is(.dark .cockpit-input) {
+  background-color: #18181B;
+  border-color: #27272A;
+  color: #FAFAFA;
 }
 
 .cockpit-input:focus {
   outline: none;
-  border-color: #10B981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  border-color: #0F766E;
+  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.2);
 }
 
-/* Pulse animation for Emerald Sync Badge */
+:is(.dark .cockpit-input:focus) {
+  border-color: #14B8A6;
+  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.25);
+}
+
+/* Tabular Status Badge Animations */
 @keyframes pulse-emerald {
   0%, 100% {
     opacity: 1;

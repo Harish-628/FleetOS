@@ -402,44 +402,44 @@ export const DriverDashboard: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-dvh">
       {/* 5-Day Upcoming Tour Notification Banner */}
       <AdvanceTourNotificationBanner />
 
-      <div className="max-w-md mx-auto p-4 space-y-4 pb-20 w-full">
+      <div className="max-w-md mx-auto p-4 space-y-4 pb-28 md:pb-8 w-full">
         {/* Driver Account & Quick Actions Bar */}
-        <div className="cockpit-card p-3 bg-[#0F172A] border border-[#1E293B] flex items-center justify-between text-xs font-mono">
+        <div className="p-3 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-lg flex items-center justify-between text-xs font-mono shadow-xs">
           <div className="flex items-center space-x-2.5 min-w-0">
-            <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
-              isOwner ? 'bg-[#10B981]/20 text-[#10B981]' : 'bg-blue-500/20 text-blue-400'
+            <div className={`w-8 h-8 rounded-md flex items-center justify-center shrink-0 ${
+              isOwner ? 'bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-400 border border-teal-200 dark:border-teal-800' : 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800'
             }`}>
               {isOwner ? <Crown className="w-4 h-4" /> : <UserIcon className="w-4 h-4" />}
             </div>
             <div className="min-w-0">
-              <div className="font-bold text-white truncate">{driverSession.full_name}</div>
+              <div className="font-bold text-slate-900 dark:text-zinc-50 truncate">{driverSession.full_name}</div>
               <div className={`text-[10px] font-semibold flex items-center space-x-1 ${
-                isOwner ? 'text-[#10B981]' : 'text-blue-400'
+                isOwner ? 'text-teal-700 dark:text-teal-400' : 'text-blue-600 dark:text-blue-400'
               }`}>
                 <span>{isOwner ? t.ownerDriverBadge : t.hiredDriverBadge}</span>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center space-x-1.5 flex-shrink-0">
+          <div className="flex items-center space-x-1.5 shrink-0">
             <button
               onClick={() => {
                 triggerDriverHaptic([30]);
                 setIsMonthCalendarOpen(true);
               }}
-              className="p-1.5 rounded-lg bg-[#1E293B] text-slate-300 hover:text-white hover:bg-slate-700 transition flex items-center space-x-1"
+              className="min-h-[38px] px-2.5 py-1.5 rounded-md bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 hover:bg-slate-200 dark:hover:bg-zinc-700 border border-slate-200 dark:border-zinc-700 transition flex items-center space-x-1"
               title={t.fullMonthCalendarTitle}
             >
-              <CalendarDays className="w-4 h-4 text-[#10B981]" />
+              <CalendarDays className="w-4 h-4 text-teal-700 dark:text-teal-400" />
               <span className="hidden sm:inline text-[11px] font-bold">Tamil Cal</span>
             </button>
             <button
               onClick={handleDriverLogout}
-              className="p-1.5 rounded-lg bg-red-950/40 text-red-400 hover:text-red-200 transition"
+              className="min-h-[38px] min-w-[38px] p-2 rounded-md bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-400 hover:bg-rose-100 dark:hover:bg-rose-900/60 border border-rose-200 dark:border-rose-900/50 transition flex items-center justify-center"
               title={t.driverLogoutBtn}
             >
               <LogOut className="w-4 h-4" />
@@ -448,38 +448,38 @@ export const DriverDashboard: React.FC = () => {
         </div>
 
         {/* Vehicle Telemetry & Duty Banner */}
-        <div className="cockpit-card p-4 border-[#10B981]/30 bg-gradient-to-br from-[#0F172A] to-[#0A0E17]">
-          <div className="flex items-center justify-between border-b border-[#1E293B] pb-3 mb-3">
+        <div className="p-4 bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-lg shadow-xs">
+          <div className="flex items-center justify-between border-b border-slate-200 dark:border-zinc-800 pb-3 mb-3">
             <div className="flex items-center space-x-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] pulse-dot" />
-              <span className="text-xs font-bold text-[#10B981] tracking-wider uppercase font-mono">
+              <span className="w-2 h-2 rounded-full bg-teal-600 dark:bg-teal-400" />
+              <span className="text-xs font-bold text-teal-700 dark:text-teal-400 tracking-wider uppercase font-mono">
                 SHIFT ACTIVE • TN37aw6052
               </span>
             </div>
-            <span className="text-xs font-mono text-slate-400">23-Seater Executive</span>
+            <span className="text-xs font-mono text-slate-500 dark:text-zinc-400">23-Seater Executive</span>
           </div>
 
         {activeTrip ? (
           <div>
-            <div className="text-xs uppercase font-mono text-slate-400 tracking-wider">{t.activeTripLabel}</div>
-            <h2 className="text-lg font-bold text-white tracking-tight">{activeTrip.customer_name}</h2>
-            <div className="flex items-center space-x-2 text-xs text-[#10B981] mt-1 font-medium">
+            <div className="text-xs uppercase font-mono text-slate-500 dark:text-zinc-400 tracking-wider">{t.activeTripLabel}</div>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-zinc-50 tracking-tight">{activeTrip.customer_name}</h2>
+            <div className="flex items-center space-x-1.5 text-xs text-teal-700 dark:text-teal-400 mt-1 font-medium">
               <MapPin className="w-3.5 h-3.5" />
               <span>{activeTrip.destination}</span>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-[#1E293B]/80 text-center font-mono">
-              <div className="p-2 rounded-lg bg-[#090D16]">
-                <div className="text-[10px] text-slate-400 uppercase">Start Odo</div>
-                <div className="text-sm font-bold text-white">{activeTrip.start_km.toLocaleString()} KM</div>
+            <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-slate-200 dark:border-zinc-800 text-center font-mono">
+              <div className="p-2 rounded-md bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800">
+                <div className="text-[10px] text-slate-500 dark:text-zinc-400 uppercase">Start Odo</div>
+                <div className="text-sm font-bold text-slate-900 dark:text-zinc-100 tabular-nums">{activeTrip.start_km.toLocaleString()} KM</div>
               </div>
-              <div className="p-2 rounded-lg bg-[#090D16]">
-                <div className="text-[10px] text-slate-400 uppercase">Diesel Bills</div>
-                <div className="text-sm font-bold text-[#F59E0B]">{fuelReceipts.length} Logged</div>
+              <div className="p-2 rounded-md bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800">
+                <div className="text-[10px] text-slate-500 dark:text-zinc-400 uppercase">Diesel Bills</div>
+                <div className="text-sm font-bold text-amber-600 dark:text-amber-400 tabular-nums">{fuelReceipts.length} Logged</div>
               </div>
-              <div className="p-2 rounded-lg bg-[#090D16]">
-                <div className="text-[10px] text-slate-400 uppercase">Fuel Total</div>
-                <div className="text-sm font-bold text-white">
+              <div className="p-2 rounded-md bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800">
+                <div className="text-[10px] text-slate-500 dark:text-zinc-400 uppercase">Fuel Total</div>
+                <div className="text-sm font-bold text-slate-900 dark:text-zinc-100 tabular-nums">
                   ₹{fuelReceipts.reduce((sum, r) => sum + r.amount_inr, 0).toLocaleString()}
                 </div>
               </div>
@@ -487,11 +487,11 @@ export const DriverDashboard: React.FC = () => {
           </div>
         ) : (
           <div className="py-2 text-center">
-            <div className="inline-flex p-2 rounded-full bg-[#1E293B] text-slate-300 mb-2">
-              <Navigation className="w-5 h-5 text-[#10B981]" />
+            <div className="inline-flex p-2.5 rounded-md bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400 mb-2">
+              <Navigation className="w-5 h-5 text-teal-700 dark:text-teal-400" />
             </div>
-            <h3 className="text-sm font-bold text-white">No Active Trip in Progress</h3>
-            <p className="text-xs text-slate-400 mt-1">{t.startTripSubheading}</p>
+            <h3 className="text-sm font-bold text-slate-900 dark:text-zinc-100">No Active Trip in Progress</h3>
+            <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1">{t.startTripSubheading}</p>
           </div>
         )}
       </div>
@@ -499,21 +499,21 @@ export const DriverDashboard: React.FC = () => {
       {/* 3-PHASE DRIVER WORKFLOW ACCORDIONS */}
       <div className="space-y-3">
         {/* PHASE 1: START TRIP & SLOT PICKER */}
-        <div className={`cockpit-card overflow-hidden transition ${activeWorkflowStep === 1 ? 'border-[#10B981]' : 'border-[#1E293B]'}`}>
+        <div id="driver-phase-1" className={`rounded-lg border overflow-hidden transition ${activeWorkflowStep === 1 ? 'border-teal-600 dark:border-teal-500 shadow-xs' : 'border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900'}`}>
           <button
             onClick={() => {
               triggerDriverHaptic([30]);
               setActiveWorkflowStep(1);
             }}
-            className="w-full min-h-[58px] px-4 flex items-center justify-between text-left bg-[#0F172A] hover:bg-[#152033]"
+            className="w-full min-h-[52px] px-4 flex items-center justify-between text-left bg-slate-50 dark:bg-zinc-900 hover:bg-slate-100 dark:hover:bg-zinc-800 transition"
           >
             <div className="flex items-center space-x-3">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm font-mono ${activeTrip ? 'bg-[#10B981]/20 text-[#10B981]' : 'bg-[#1E293B] text-white'}`}>
-                {activeTrip ? <Check className="w-4 h-4" /> : '1'}
+              <div className={`w-7 h-7 rounded-md flex items-center justify-center font-bold text-xs font-mono ${activeTrip ? 'bg-teal-50 dark:bg-teal-950/60 text-teal-700 dark:text-teal-400 border border-teal-200 dark:border-teal-800' : 'bg-slate-200 dark:bg-zinc-800 text-slate-700 dark:text-zinc-200'}`}>
+                {activeTrip ? <Check className="w-3.5 h-3.5" /> : '1'}
               </div>
               <div>
-                <div className="text-sm font-bold text-white">{t.tabTripStart}</div>
-                <div className="text-[11px] text-slate-400 font-mono">
+                <div className="text-sm font-bold text-slate-900 dark:text-zinc-100">{t.tabTripStart}</div>
+                <div className="text-[11px] text-slate-500 dark:text-zinc-400 font-mono tabular-nums">
                   {activeTrip ? `${activeTrip.customer_name} (${activeTrip.start_km} KM)` : t.stepIndicator(1, 3)}
                 </div>
               </div>
@@ -522,11 +522,11 @@ export const DriverDashboard: React.FC = () => {
           </button>
 
           {activeWorkflowStep === 1 && (
-            <div className="p-4 border-t border-[#1E293B] space-y-4 bg-[#0A0E17]/60">
+            <div className="p-4 border-t border-slate-200 dark:border-zinc-800 space-y-4 bg-white dark:bg-zinc-900">
               {activeTrip ? (
-                <div className="p-3 rounded-xl bg-[#1E293B]/50 text-center">
-                  <div className="text-xs text-[#10B981] font-semibold flex items-center justify-center space-x-1">
-                    <CheckCircle className="w-4 h-4" />
+                <div className="p-3 rounded-md bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-center">
+                  <div className="text-xs text-teal-800 dark:text-teal-300 font-semibold flex items-center justify-center space-x-1.5">
+                    <CheckCircle className="w-4 h-4 text-teal-600 dark:text-teal-400" />
                     <span>{t.activeTripWarning}</span>
                   </div>
                 </div>
@@ -536,22 +536,22 @@ export const DriverDashboard: React.FC = () => {
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-1.5">
-                        <Calendar className="w-4 h-4 text-[#10B981]" />
-                        <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+                        <Calendar className="w-4 h-4 text-teal-700 dark:text-teal-400" />
+                        <span className="text-xs font-semibold text-slate-700 dark:text-zinc-300 uppercase tracking-wider">
                           {t.tripSchedule}
                         </span>
                       </div>
                       <button
                         type="button"
                         onClick={handleManualTrip}
-                        className="text-[11px] font-semibold text-slate-400 hover:text-white px-2 py-1 rounded-md bg-[#1E293B] border border-[#334155] transition"
+                        className="text-[11px] font-semibold text-slate-600 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white px-2 py-1 rounded-md bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 transition"
                       >
                         {t.manualTripBtn}
                       </button>
                     </div>
 
                     {calendarSlots.length === 0 ? (
-                      <div className="p-3 rounded-xl bg-[#0F172A] border border-[#1E293B] text-center text-xs text-slate-400 font-mono">
+                      <div className="p-3 rounded-md bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 text-center text-xs text-slate-500 dark:text-zinc-400 font-mono">
                         {t.noSlotsFound}
                       </div>
                     ) : (
@@ -567,51 +567,51 @@ export const DriverDashboard: React.FC = () => {
                             <div
                               key={slot.id}
                               onClick={() => handleSelectSlot(slot)}
-                              className={`p-3 rounded-xl border transition cursor-pointer select-none ${
+                              className={`p-3 rounded-md border transition cursor-pointer select-none ${
                                 isSelected
-                                  ? 'bg-[#10B981]/15 border-[#10B981] shadow-lg shadow-emerald-950/40 ring-1 ring-[#10B981]'
-                                  : 'bg-[#0F172A] border-[#1E293B] hover:border-[#334155]'
+                                  ? 'bg-teal-50 dark:bg-teal-950/40 border-teal-600 dark:border-teal-500 ring-1 ring-teal-600 dark:ring-teal-500 shadow-xs'
+                                  : 'bg-slate-50 dark:bg-zinc-950 border-slate-200 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700'
                               }`}
                             >
                               <div className="flex items-center justify-between mb-1.5">
                                 <div className="flex items-center space-x-2">
-                                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#1E293B] text-slate-300 font-mono">
+                                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-200 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 font-mono">
                                     {dateCategory}
                                   </span>
                                   {isConfirmed && (
-                                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#10B981]/20 text-[#10B981] font-mono">
+                                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-teal-100 dark:bg-teal-950 text-teal-800 dark:text-teal-300 font-mono">
                                       🟢 {t.slotConfirmed}
                                     </span>
                                   )}
                                   {isPending && (
-                                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#F59E0B]/20 text-[#F59E0B] font-mono">
+                                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 font-mono">
                                       🟡 {t.slotPending}
                                     </span>
                                   )}
                                   {isMaint && (
-                                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#EF4444]/20 text-[#EF4444] font-mono">
+                                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 font-mono">
                                       🔴 {t.slotMaintenance}
                                     </span>
                                   )}
                                 </div>
 
                                 {isSelected && (
-                                  <span className="text-[10px] font-bold text-[#10B981] flex items-center space-x-1">
+                                  <span className="text-[10px] font-bold text-teal-700 dark:text-teal-400 flex items-center space-x-1">
                                     <Check className="w-3.5 h-3.5" />
                                     <span>{t.selectedSlotBadge}</span>
                                   </span>
                                 )}
                               </div>
 
-                              <div className="text-sm font-bold text-white tracking-tight">{slot.customer_name}</div>
+                              <div className="text-sm font-bold text-slate-900 dark:text-zinc-100 tracking-tight">{slot.customer_name}</div>
                               {slot.destination && (
-                                <div className="text-xs text-slate-300 flex items-center space-x-1.5 mt-0.5">
-                                  <MapPin className="w-3 h-3 text-[#10B981]" />
+                                <div className="text-xs text-slate-600 dark:text-zinc-400 flex items-center space-x-1.5 mt-0.5">
+                                  <MapPin className="w-3 h-3 text-teal-600 dark:text-teal-400" />
                                   <span>{slot.destination}</span>
                                 </div>
                               )}
 
-                              <div className="flex items-center space-x-3 text-[11px] text-slate-400 font-mono mt-2">
+                              <div className="flex items-center space-x-3 text-[11px] text-slate-500 dark:text-zinc-400 font-mono mt-2 tabular-nums">
                                 <span className="flex items-center space-x-1">
                                   <Clock className="w-3 h-3" />
                                   <span>
@@ -633,14 +633,14 @@ export const DriverDashboard: React.FC = () => {
                   </div>
 
                   {/* START TRIP FORM WITH VOICE INPUT FIELDS */}
-                  <form onSubmit={handleStartTrip} className="space-y-3 pt-2 border-t border-[#1E293B]">
+                  <form onSubmit={handleStartTrip} className="space-y-3 pt-2 border-t border-slate-200 dark:border-zinc-800">
                     {selectedSlotId && (
-                      <div className="flex items-center justify-between p-2 rounded-lg bg-[#10B981]/10 border border-[#10B981]/30 text-xs text-[#10B981]">
+                      <div className="flex items-center justify-between p-2 rounded-md bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-xs text-teal-800 dark:text-teal-300">
                         <span>✓ {t.selectedSlotBadge}: #{selectedSlotId.slice(-8)}</span>
                         <button
                           type="button"
                           onClick={() => setSelectedSlotId(null)}
-                          className="hover:text-white p-1"
+                          className="hover:text-slate-900 dark:hover:text-white p-1"
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -679,7 +679,7 @@ export const DriverDashboard: React.FC = () => {
 
                     <button
                       type="submit"
-                      className="cockpit-btn-primary w-full min-h-[58px] text-base tracking-wide flex items-center justify-center space-x-2"
+                      className="w-full min-h-[50px] rounded-md bg-teal-700 hover:bg-teal-800 dark:bg-teal-600 dark:hover:bg-teal-500 text-white font-semibold text-sm tracking-wide flex items-center justify-center space-x-2 transition active:scale-98 shadow-xs"
                     >
                       <span>🚀</span>
                       <span>{t.startTripBtn}</span>
@@ -692,43 +692,43 @@ export const DriverDashboard: React.FC = () => {
         </div>
 
         {/* PHASE 2: FUEL STOP (DIGITAL BILL BINDER) */}
-        <div className={`cockpit-card overflow-hidden transition ${activeWorkflowStep === 2 ? 'border-[#F59E0B]' : 'border-[#1E293B]'}`}>
+        <div id="driver-phase-2" className={`rounded-lg border overflow-hidden transition ${activeWorkflowStep === 2 ? 'border-amber-500 dark:border-amber-500 shadow-xs' : 'border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900'}`}>
           <button
             onClick={() => {
               triggerDriverHaptic([30]);
               setActiveWorkflowStep(2);
             }}
-            className="w-full min-h-[58px] px-4 flex items-center justify-between text-left bg-[#0F172A] hover:bg-[#152033]"
+            className="w-full min-h-[52px] px-4 flex items-center justify-between text-left bg-slate-50 dark:bg-zinc-900 hover:bg-slate-100 dark:hover:bg-zinc-800 transition"
           >
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-lg bg-[#F59E0B]/20 text-[#F59E0B] flex items-center justify-center font-bold text-sm font-mono">
+              <div className="w-7 h-7 rounded-md bg-amber-100 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-400 flex items-center justify-center font-bold text-xs font-mono">
                 2
               </div>
               <div>
-                <div className="text-sm font-bold text-white flex items-center space-x-2">
+                <div className="text-sm font-bold text-slate-900 dark:text-zinc-100 flex items-center space-x-2">
                   <span>{t.tabFuelStop}</span>
                   {fuelReceipts.length > 0 && (
-                    <span className="px-1.5 py-0.5 rounded text-[10px] bg-[#F59E0B] text-[#090D16] font-mono font-bold">
+                    <span className="px-1.5 py-0.5 rounded text-[10px] bg-amber-500 text-white font-mono font-bold tabular-nums">
                       {fuelReceipts.length}
                     </span>
                   )}
                 </div>
-                <div className="text-[11px] text-slate-400 font-mono">{t.fuelStopSubheading}</div>
+                <div className="text-[11px] text-slate-500 dark:text-zinc-400 font-mono">{t.fuelStopSubheading}</div>
               </div>
             </div>
             <ChevronRight className={`w-4 h-4 text-slate-400 transform transition ${activeWorkflowStep === 2 ? 'rotate-90' : ''}`} />
           </button>
 
           {activeWorkflowStep === 2 && (
-            <div className="p-4 border-t border-[#1E293B] space-y-4 bg-[#0A0E17]/60">
+            <div className="p-4 border-t border-slate-200 dark:border-zinc-800 space-y-4 bg-white dark:bg-zinc-900">
               {!activeTrip ? (
-                <div className="p-3 text-center text-xs text-amber-400/90 font-mono">
+                <div className="p-3 text-center text-xs text-amber-700 dark:text-amber-400 font-mono">
                   {t.activeTripWarning}
                 </div>
               ) : (
                 <form onSubmit={handleLogFuel} className="space-y-3">
                   {fuelSuccessMsg && (
-                    <div className="p-2.5 rounded-lg bg-[#10B981]/20 border border-[#10B981] text-xs font-semibold text-[#10B981] text-center flex items-center justify-center space-x-1.5">
+                    <div className="p-2.5 rounded-md bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-xs font-semibold text-teal-800 dark:text-teal-300 text-center flex items-center justify-center space-x-1.5">
                       <CheckCircle className="w-4 h-4" />
                       <span>{fuelSuccessMsg}</span>
                     </div>
@@ -736,7 +736,7 @@ export const DriverDashboard: React.FC = () => {
 
                   {/* Native Camera Capture Button */}
                   <div>
-                    <label className="block text-xs font-mono font-semibold uppercase text-slate-300 mb-1.5">
+                    <label className="block text-xs font-mono font-semibold uppercase text-slate-700 dark:text-zinc-300 mb-1.5">
                       {t.fuelBillPhotoLabel}
                     </label>
                     <input
@@ -749,20 +749,20 @@ export const DriverDashboard: React.FC = () => {
                     />
 
                     {receiptImage ? (
-                      <div className="relative rounded-xl overflow-hidden border-2 border-[#10B981] bg-[#090D16] p-2">
+                      <div className="relative rounded-md overflow-hidden border border-teal-600 dark:border-teal-500 bg-slate-50 dark:bg-zinc-950 p-2">
                         <img
                           src={receiptImage.base64}
                           alt="Diesel receipt preview"
-                          className="w-full h-40 object-cover rounded-lg"
+                          className="w-full h-40 object-cover rounded-md"
                         />
                         <div className="mt-2 flex items-center justify-between text-xs font-mono px-1">
-                          <span className="text-[#10B981] font-bold">
+                          <span className="text-teal-700 dark:text-teal-400 font-bold tabular-nums">
                             ✓ {t.billCaptured} ({receiptImage.sizeKb} KB)
                           </span>
                           <button
                             type="button"
                             onClick={() => fileInputRef.current?.click()}
-                            className="text-amber-400 underline font-semibold"
+                            className="text-amber-600 dark:text-amber-400 underline font-semibold"
                           >
                             {t.retakeBill}
                           </button>
@@ -776,9 +776,9 @@ export const DriverDashboard: React.FC = () => {
                           fileInputRef.current?.click();
                         }}
                         disabled={isCompressingImage}
-                        className="w-full min-h-[64px] rounded-xl border-2 border-dashed border-[#F59E0B]/60 hover:border-[#F59E0B] bg-[#0F172A] hover:bg-[#1E293B] flex items-center justify-center space-x-2 text-white font-bold transition active:scale-98"
+                        className="w-full min-h-[58px] rounded-md border-2 border-dashed border-slate-300 dark:border-zinc-700 hover:border-amber-500 bg-slate-50 dark:bg-zinc-950 hover:bg-slate-100 dark:hover:bg-zinc-800 flex items-center justify-center space-x-2 text-slate-700 dark:text-zinc-300 font-semibold transition active:scale-98"
                       >
-                        <Camera className="w-6 h-6 text-[#F59E0B]" />
+                        <Camera className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                         <span>{isCompressingImage ? t.compressingImage : `📸 ${t.tapToCaptureBill}`}</span>
                       </button>
                     )}
@@ -811,29 +811,29 @@ export const DriverDashboard: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="cockpit-btn-secondary w-full min-h-[56px] text-base font-bold bg-[#F59E0B] hover:bg-[#D97706] text-[#090D16] border-none"
+                    className="w-full min-h-[50px] rounded-md bg-amber-600 hover:bg-amber-700 text-white text-sm font-semibold transition active:scale-98 shadow-xs"
                   >
                     + {t.logFuelBtn}
                   </button>
 
                   {/* List of receipts already in binder for this trip */}
                   {fuelReceipts.length > 0 && (
-                    <div className="mt-4 pt-3 border-t border-[#1E293B]">
-                      <div className="text-xs font-mono uppercase text-slate-400 mb-2">
+                    <div className="mt-4 pt-3 border-t border-slate-200 dark:border-zinc-800">
+                      <div className="text-xs font-mono uppercase text-slate-500 dark:text-zinc-400 mb-2 tabular-nums">
                         {t.loggedReceiptsTitle} ({fuelReceipts.length})
                       </div>
                       <div className="space-y-2 max-h-40 overflow-y-auto">
                         {fuelReceipts.map((r) => (
                           <div
                             key={r.client_event_id}
-                            className="flex items-center justify-between p-2 rounded-lg bg-[#0F172A] border border-[#1E293B] text-xs font-mono"
+                            className="flex items-center justify-between p-2 rounded-md bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 text-xs font-mono"
                           >
                             <div className="flex items-center space-x-2">
-                              <Receipt className="w-4 h-4 text-[#F59E0B]" />
-                              <span className="text-white font-bold">₹{r.amount_inr.toLocaleString()}</span>
-                              {r.liters && <span className="text-slate-400">({r.liters} L)</span>}
+                              <Receipt className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                              <span className="text-slate-900 dark:text-zinc-100 font-bold tabular-nums">₹{r.amount_inr.toLocaleString()}</span>
+                              {r.liters && <span className="text-slate-500 dark:text-zinc-400 tabular-nums">({r.liters} L)</span>}
                             </div>
-                            <span className="text-[10px] text-slate-400">
+                            <span className="text-[10px] text-slate-500 dark:text-zinc-400 tabular-nums">
                               {new Date(r.recorded_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </span>
                           </div>
@@ -848,44 +848,44 @@ export const DriverDashboard: React.FC = () => {
         </div>
 
         {/* PHASE 3: END TRIP & CASH SETTLEMENT */}
-        <div className={`cockpit-card overflow-hidden transition ${activeWorkflowStep === 3 ? 'border-[#10B981]' : 'border-[#1E293B]'}`}>
+        <div id="driver-phase-3" className={`rounded-lg border overflow-hidden transition ${activeWorkflowStep === 3 ? 'border-teal-600 dark:border-teal-500 shadow-xs' : 'border-slate-200 dark:border-zinc-800 bg-white dark:bg-zinc-900'}`}>
           <button
             onClick={() => {
               triggerDriverHaptic([30]);
               setActiveWorkflowStep(3);
             }}
-            className="w-full min-h-[58px] px-4 flex items-center justify-between text-left bg-[#0F172A] hover:bg-[#152033]"
+            className="w-full min-h-[52px] px-4 flex items-center justify-between text-left bg-slate-50 dark:bg-zinc-900 hover:bg-slate-100 dark:hover:bg-zinc-800 transition"
           >
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 rounded-lg bg-[#10B981]/20 text-[#10B981] flex items-center justify-center font-bold text-sm font-mono">
+              <div className="w-7 h-7 rounded-md bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-800 text-teal-700 dark:text-teal-400 flex items-center justify-center font-bold text-xs font-mono">
                 3
               </div>
               <div>
-                <div className="text-sm font-bold text-white">{t.tabTripEnd}</div>
-                <div className="text-[11px] text-slate-400 font-mono">{t.finishTripSubheading}</div>
+                <div className="text-sm font-bold text-slate-900 dark:text-zinc-100">{t.tabTripEnd}</div>
+                <div className="text-[11px] text-slate-500 dark:text-zinc-400 font-mono">{t.finishTripSubheading}</div>
               </div>
             </div>
             <ChevronRight className={`w-4 h-4 text-slate-400 transform transition ${activeWorkflowStep === 3 ? 'rotate-90' : ''}`} />
           </button>
 
           {activeWorkflowStep === 3 && (
-            <div className="p-4 border-t border-[#1E293B] space-y-3 bg-[#0A0E17]/60">
+            <div className="p-4 border-t border-slate-200 dark:border-zinc-800 space-y-3 bg-white dark:bg-zinc-900">
               {!activeTrip ? (
-                <div className="p-3 text-center text-xs text-slate-400 font-mono">
+                <div className="p-3 text-center text-xs text-slate-500 dark:text-zinc-400 font-mono">
                   {t.noSlotsFound}
                 </div>
               ) : (
                 <form onSubmit={handleEndTrip} className="space-y-3">
                   {endKmError && (
-                    <div className="p-3 rounded-lg bg-red-900/30 border border-red-500 text-xs font-semibold text-red-200 flex items-center space-x-2">
+                    <div className="p-3 rounded-md bg-rose-50 dark:bg-rose-950/40 border border-rose-300 dark:border-rose-800 text-xs font-semibold text-rose-800 dark:text-rose-200 flex items-center space-x-2">
                       <AlertCircle className="w-4 h-4 flex-shrink-0" />
                       <span>{endKmError}</span>
                     </div>
                   )}
 
-                  <div className="p-2.5 rounded-lg bg-[#0F172A] border border-[#1E293B] text-xs font-mono flex items-center justify-between">
-                    <span className="text-slate-400">{t.startKmLabel}:</span>
-                    <span className="text-[#10B981] font-bold text-sm">{activeTrip.start_km.toLocaleString()} KM</span>
+                  <div className="p-2.5 rounded-md bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 text-xs font-mono flex items-center justify-between">
+                    <span className="text-slate-500 dark:text-zinc-400">{t.startKmLabel}:</span>
+                    <span className="text-teal-700 dark:text-teal-400 font-bold text-sm tabular-nums">{activeTrip.start_km.toLocaleString()} KM</span>
                   </div>
 
                   <VoiceInputField
@@ -906,12 +906,12 @@ export const DriverDashboard: React.FC = () => {
                   />
 
                   {endKm !== '' && Number(endKm) > activeTrip.start_km && (
-                    <div className="p-2.5 rounded-lg bg-[#090D16] border border-[#1E293B] text-xs font-mono text-[#10B981] flex items-center justify-between">
+                    <div className="p-2.5 rounded-md bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 text-xs font-mono text-teal-700 dark:text-teal-400 flex items-center justify-between">
                       <span className="flex items-center space-x-1 font-bold">
                         <span>🛣️</span>
                         <span>{t.totalDistance}:</span>
                       </span>
-                      <span className="font-extrabold text-base">{(Number(endKm) - activeTrip.start_km).toFixed(1)} KM</span>
+                      <span className="font-extrabold text-base tabular-nums">{(Number(endKm) - activeTrip.start_km).toFixed(1)} KM</span>
                     </div>
                   )}
 
@@ -928,12 +928,12 @@ export const DriverDashboard: React.FC = () => {
                   />
 
                   {/* Itemized Road Expenses: Toll, RTO, Parking, Other Expenses */}
-                  <div className="space-y-3 pt-3 pb-2 border-t border-[#1E293B]">
+                  <div className="space-y-3 pt-3 pb-2 border-t border-slate-200 dark:border-zinc-800">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono font-semibold uppercase text-slate-300">
+                      <span className="text-xs font-mono font-semibold uppercase text-slate-700 dark:text-zinc-300">
                         {t.roadExpensesBreakdown}
                       </span>
-                      <span className="text-xs font-mono font-bold text-[#F59E0B] px-2 py-0.5 rounded bg-[#F59E0B]/10 border border-[#F59E0B]/30">
+                      <span className="text-xs font-mono font-bold text-amber-700 dark:text-amber-400 px-2 py-0.5 rounded-md bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 tabular-nums">
                         {t.totalRoadExpensesLabel}: ₹{totalRoadExpenses.toLocaleString()}
                       </span>
                     </div>
@@ -991,12 +991,12 @@ export const DriverDashboard: React.FC = () => {
 
                   {/* Owner-Driver Bata Rule: Locked to ₹0 for senthilraja, editable for hired drivers */}
                   {isOwner ? (
-                    <div className="p-3 rounded-lg bg-emerald-950/40 border border-[#10B981]/50 text-xs font-mono text-emerald-300 flex items-center justify-between">
+                    <div className="p-3 rounded-md bg-teal-50 dark:bg-teal-950/40 border border-teal-200 dark:border-teal-800 text-xs font-mono text-teal-800 dark:text-teal-300 flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                        <Crown className="w-4 h-4 text-[#10B981] flex-shrink-0" />
+                        <Crown className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" />
                         <span>{t.driverBataOwnerZero}</span>
                       </div>
-                      <span className="font-bold text-sm text-[#10B981]">₹0</span>
+                      <span className="font-bold text-sm text-teal-700 dark:text-teal-400 tabular-nums">₹0</span>
                     </div>
                   ) : (
                     <VoiceInputField
@@ -1012,7 +1012,7 @@ export const DriverDashboard: React.FC = () => {
                   <button
                     type="submit"
                     disabled={isCompletingTrip}
-                    className="cockpit-btn-primary w-full min-h-[58px] text-base tracking-wide flex items-center justify-center space-x-2"
+                    className="w-full min-h-[50px] rounded-md bg-teal-700 hover:bg-teal-800 dark:bg-teal-600 dark:hover:bg-teal-500 text-white font-semibold text-sm tracking-wide flex items-center justify-center space-x-2 transition active:scale-98 shadow-xs"
                   >
                     <span>🏁</span>
                     <span>{isCompletingTrip ? t.finishing : t.finishTripBtn}</span>
@@ -1025,9 +1025,75 @@ export const DriverDashboard: React.FC = () => {
       </div>
       </div>
 
+      {/* MOBILE STICKY BOTTOM NAVIGATION BAR (md:hidden) */}
+      <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-zinc-900/95 border-t border-slate-200 dark:border-zinc-800 pb-safe md:hidden shadow-lg backdrop-blur-xs">
+        <div className="grid grid-cols-4 h-14">
+          <button
+            onClick={() => {
+              triggerDriverHaptic([30]);
+              setActiveWorkflowStep(1);
+            }}
+            className={`min-h-[48px] flex flex-col items-center justify-center transition active:scale-95 ${
+              activeWorkflowStep === 1
+                ? 'text-teal-700 dark:text-teal-400 font-bold'
+                : 'text-slate-500 dark:text-zinc-400 hover:text-slate-800 dark:hover:text-zinc-200'
+            }`}
+          >
+            <Navigation className="w-4 h-4" />
+            <span className="text-[10px] mt-0.5">{t.tabTripStart}</span>
+          </button>
+
+          <button
+            onClick={() => {
+              triggerDriverHaptic([30]);
+              setActiveWorkflowStep(2);
+            }}
+            className={`min-h-[48px] flex flex-col items-center justify-center relative transition active:scale-95 ${
+              activeWorkflowStep === 2
+                ? 'text-amber-600 dark:text-amber-400 font-bold'
+                : 'text-slate-500 dark:text-zinc-400 hover:text-slate-800 dark:hover:text-zinc-200'
+            }`}
+          >
+            <Receipt className="w-4 h-4" />
+            <span className="text-[10px] mt-0.5">{t.tabFuelStop}</span>
+            {fuelReceipts.length > 0 && (
+              <span className="absolute top-1 right-5 px-1 py-0.2 text-[9px] font-bold rounded-full bg-amber-500 text-white tabular-nums">
+                {fuelReceipts.length}
+              </span>
+            )}
+          </button>
+
+          <button
+            onClick={() => {
+              triggerDriverHaptic([30]);
+              setActiveWorkflowStep(3);
+            }}
+            className={`min-h-[48px] flex flex-col items-center justify-center transition active:scale-95 ${
+              activeWorkflowStep === 3
+                ? 'text-teal-700 dark:text-teal-400 font-bold'
+                : 'text-slate-500 dark:text-zinc-400 hover:text-slate-800 dark:hover:text-zinc-200'
+            }`}
+          >
+            <CheckCircle className="w-4 h-4" />
+            <span className="text-[10px] mt-0.5">{t.tabTripEnd}</span>
+          </button>
+
+          <button
+            onClick={() => {
+              triggerDriverHaptic([30]);
+              setIsMonthCalendarOpen(true);
+            }}
+            className="min-h-[48px] flex flex-col items-center justify-center text-slate-500 dark:text-zinc-400 hover:text-slate-800 dark:hover:text-zinc-200 transition active:scale-95"
+          >
+            <CalendarDays className="w-4 h-4" />
+            <span className="text-[10px] mt-0.5">Calendar</span>
+          </button>
+        </div>
+      </nav>
+
       {/* Interactive Full Monthly Tamil Calendar Modal */}
       {isMonthCalendarOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-black/80 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 md:p-6 bg-slate-900/60 dark:bg-black/75">
           <div className="w-full max-w-4xl max-h-[92vh] flex flex-col">
             <FullMonthCalendar isModal onClose={() => setIsMonthCalendarOpen(false)} />
           </div>
