@@ -55,7 +55,7 @@ requests==2.34.2
 s3transfer==0.19.3
 six==1.17.0
 slowapi==0.1.10
-SQLAlchemy==2.1.9
+SQLAlchemy[asyncio]==2.1.9
 starlette==1.10.0
 typing-inspection==0.4.5
 typing_extensions==4.16.0
