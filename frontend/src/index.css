@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-headline: 'Space Grotesk', -apple-system, sans-serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    --font-telemetry: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: #090D16;
+    color: #DFE2EF;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headline);
+  }
+
+  .font-mono, .telemetry-val {
+    font-family: var(--font-telemetry);
+    font-feature-settings: "tnum" 1, "zero" 1;
+  }
+}
+
+/* Custom Cockpit Component Classes */
+.cockpit-card {
+  background-color: #0F172A;
+  border: 1.5px solid #1E293B;
+  border-radius: 1rem;
+}
+
+.cockpit-btn-primary {
+  min-height: 58px;
+  background-color: #10B981;
+  color: #090D16;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+  user-select: none;
+}
+
+.cockpit-btn-primary:active {
+  transform: scale(0.98);
+  background-color: #059669;
+}
+
+.cockpit-btn-secondary {
+  min-height: 56px;
+  background-color: #1E293B;
+  color: #FFFFFF;
+  border: 1.5px solid #334155;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+  user-select: none;
+}
+
+.cockpit-btn-secondary:active {
+  transform: scale(0.98);
+  background-color: #334155;
+}
+
+.cockpit-input {
+  min-height: 56px;
+  background-color: #090D16;
+  border: 1.5px solid #334155;
+  border-radius: 0.75rem;
+  padding: 0 1rem;
+  color: #FFFFFF;
+  font-size: 1.05rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cockpit-input:focus {
+  outline: none;
+  border-color: #10B981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+/* Pulse animation for Emerald Sync Badge */
+@keyframes pulse-emerald {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(0.85);
+  }
+}
+
+.pulse-dot {
+  animation: pulse-emerald 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
