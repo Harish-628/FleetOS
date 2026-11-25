@@ -2,42 +2,42 @@ services:
   - type: web
     name: fleetos-backend
     env: python
-    region: oregon
+    region: singapore
     plan: free
     rootDir: backend
-    buildCommand: "pip install --upgrade pip && pip install -r requirements.txt && pip install -e ."
-    preDeployCommand: "alembic upgrade head || python3 -c 'import asyncio; from app.core.database import Base, engine; asyncio.run(engine.begin().then(lambda c: c.run_sync(Base.metadata.create_all)))'"
-    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    buildCommand: "pip install --upgrade pip && pip install ."
+    startCommand: "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
     envVars:
       - key: DATABASE_URL
         sync: false
         # Connect to Neon PostgreSQL: postgresql://<user>:<password>@<neon-host>/<dbname>?sslmode=require
       - key: JWT_SECRET_KEY
-        generateValue: true
-      - key: ADMIN_USERNAME
-        value: admin
-      - key: ADMIN_PASSWORD
         sync: false
       - key: DRIVER_QR_SECRET
-        generateValue: true
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: DEFAULT_DRIVER_PASSWORD
+        sync: false
       - key: STORAGE_BACKEND
         value: s3
       - key: S3_ENDPOINT_URL
         sync: false
-        # e.g. https://<project-ref>.storage.supabase.co/storage/v1/s3 or https://<account_id>.r2.cloudflarestorage.com
+        # e.g. https://<project-ref>.storage.supabase.co/storage/v1/s3 or Cloudflare R2
       - key: S3_REGION
         value: ap-southeast-1
+      - key: S3_BUCKET_NAME
+        value: vinoth-travels-receipts
       - key: S3_ACCESS_KEY_ID
         sync: false
       - key: S3_SECRET_ACCESS_KEY
         sync: false
-      - key: S3_BUCKET_NAME
-        value: fleetos-receipts
       - key: S3_PUBLIC_URL
         sync: false
       - key: GOOGLE_SERVICE_ACCOUNT_JSON
         sync: false
       - key: GOOGLE_CALENDAR_ID
-        value: primary
+        sync: false
       - key: ALLOWED_ORIGINS
-        value: "https://fleetos.vercel.app,https://fleetos.pages.dev"
+        sync: false
+        # e.g. https://fleetos.vercel.app
