@@ -1,5 +1,5 @@
-import { db, type LocalSyncQueueItem } from '../db/fleet_db';
-import { api, type SyncBatchPayload } from '../lib/api';
+import { db, type LocalSyncQueueItem, type LocalCalendarSlot } from '../db/fleet_db';
+import { api, type SyncBatchPayload, type DriverCalendarSlot } from '../lib/api';
 import { generateUUID } from '../lib/uuid';
 
 export type SyncStatusState = {
@@ -69,13 +69,13 @@ class SyncEngine {
    * Fetches latest driver slots when online and caches them into Dexie calendarSlots.
    * Seamlessly returns cached Dexie slots if offline or if network fails.
    */
-  public async refreshDriverSlots(): Promise<any[]> {
+  public async refreshDriverSlots(): Promise<LocalCalendarSlot[]> {
     if (this.state.isOnline) {
       try {
-        const slots = await api.getDriverSlots();
+        const slots: DriverCalendarSlot[] = await api.getDriverSlots();
         if (slots && slots.length > 0) {
           const now = new Date().toISOString();
-          const itemsToSave = slots.map((s) => ({
+          const itemsToSave: LocalCalendarSlot[] = slots.map((s: DriverCalendarSlot) => ({
             id: s.id,
             summary: s.summary,
             customer_name: s.customer_name,
