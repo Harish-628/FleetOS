@@ -22,10 +22,12 @@ def upgrade() -> None:
     # Add calendar_event_id column if not exists
     conn = op.get_bind()
     insp = sa.inspect(conn)
-    columns = [c['name'] for c in insp.get_columns('trips')]
-    if 'calendar_event_id' not in columns:
-        op.add_column('trips', sa.Column('calendar_event_id', sa.String(length=100), nullable=True))
-        op.create_index(op.f('ix_trips_calendar_event_id'), 'trips', ['calendar_event_id'], unique=False)
+    tables = insp.get_table_names()
+    if 'trips' in tables:
+        columns = [c['name'] for c in insp.get_columns('trips')]
+        if 'calendar_event_id' not in columns:
+            op.add_column('trips', sa.Column('calendar_event_id', sa.String(length=100), nullable=True))
+            op.create_index(op.f('ix_trips_calendar_event_id'), 'trips', ['calendar_event_id'], unique=False)
 
 
 def downgrade() -> None:

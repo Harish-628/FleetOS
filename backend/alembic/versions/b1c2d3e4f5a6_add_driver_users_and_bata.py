@@ -38,12 +38,13 @@ def upgrade() -> None:
         op.create_index(op.f('ix_driver_users_username'), 'driver_users', ['username'], unique=True)
 
     # 2. Add columns to trips if not exist
-    trip_columns = [c['name'] for c in insp.get_columns('trips')]
-    if 'driver_username' not in trip_columns:
-        op.add_column('trips', sa.Column('driver_username', sa.String(length=50), nullable=True))
-        op.create_index(op.f('ix_trips_driver_username'), 'trips', ['driver_username'], unique=False)
-    if 'driver_bata_inr' not in trip_columns:
-        op.add_column('trips', sa.Column('driver_bata_inr', sa.Float(), nullable=False, server_default='0.0'))
+    if 'trips' in tables:
+        trip_columns = [c['name'] for c in insp.get_columns('trips')]
+        if 'driver_username' not in trip_columns:
+            op.add_column('trips', sa.Column('driver_username', sa.String(length=50), nullable=True))
+            op.create_index(op.f('ix_trips_driver_username'), 'trips', ['driver_username'], unique=False)
+        if 'driver_bata_inr' not in trip_columns:
+            op.add_column('trips', sa.Column('driver_bata_inr', sa.Float(), nullable=False, server_default='0.0'))
 
 
 def downgrade() -> None:

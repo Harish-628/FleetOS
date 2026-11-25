@@ -21,16 +21,18 @@ depends_on: Union[str, Sequence[str], None] = None
 def upgrade() -> None:
     conn = op.get_bind()
     insp = sa.inspect(conn)
-    existing_columns = [col['name'] for col in insp.get_columns('trips')]
+    tables = insp.get_table_names()
+    if 'trips' in tables:
+        existing_columns = [col['name'] for col in insp.get_columns('trips')]
 
-    if 'toll_amount_inr' not in existing_columns:
-        op.add_column('trips', sa.Column('toll_amount_inr', sa.Float(), nullable=False, server_default='0.0'))
-    if 'rto_amount_inr' not in existing_columns:
-        op.add_column('trips', sa.Column('rto_amount_inr', sa.Float(), nullable=False, server_default='0.0'))
-    if 'parking_amount_inr' not in existing_columns:
-        op.add_column('trips', sa.Column('parking_amount_inr', sa.Float(), nullable=False, server_default='0.0'))
-    if 'other_expenses_inr' not in existing_columns:
-        op.add_column('trips', sa.Column('other_expenses_inr', sa.Float(), nullable=False, server_default='0.0'))
+        if 'toll_amount_inr' not in existing_columns:
+            op.add_column('trips', sa.Column('toll_amount_inr', sa.Float(), nullable=False, server_default='0.0'))
+        if 'rto_amount_inr' not in existing_columns:
+            op.add_column('trips', sa.Column('rto_amount_inr', sa.Float(), nullable=False, server_default='0.0'))
+        if 'parking_amount_inr' not in existing_columns:
+            op.add_column('trips', sa.Column('parking_amount_inr', sa.Float(), nullable=False, server_default='0.0'))
+        if 'other_expenses_inr' not in existing_columns:
+            op.add_column('trips', sa.Column('other_expenses_inr', sa.Float(), nullable=False, server_default='0.0'))
 
 
 def downgrade() -> None:
