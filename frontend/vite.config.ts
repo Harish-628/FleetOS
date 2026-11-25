@@ -11,9 +11,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
-        name: "Vinoth Travels - Driver's Dashboard & Fleet Portal (TN37aw6052)",
+        name: "Vinoth Travels - Driver's Dashboard & Fleet Portal (TN37AW6052)",
         short_name: 'Vinoth Travels',
-        description: 'Offline-First Driver Dashboard & Fleet Admin Portal for Vinoth Travels 23-Seater Commercial Tourist Bus (TN37aw6052)',
+        description: 'Offline-First Driver Dashboard & Fleet Admin Portal for Vinoth Travels 23-Seater Commercial Tourist Bus (TN37AW6052)',
         theme_color: '#090D16',
         background_color: '#090D16',
         display: 'standalone',

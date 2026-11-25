@@ -453,7 +453,7 @@ export const DriverDashboard: React.FC = () => {
             <div className="flex items-center space-x-2">
               <span className="w-2 h-2 rounded-full bg-teal-600 dark:bg-teal-400" />
               <span className="text-xs font-bold text-teal-700 dark:text-teal-400 tracking-wider uppercase font-mono">
-                SHIFT ACTIVE • TN37aw6052
+                SHIFT ACTIVE • TN37AW6052
               </span>
             </div>
             <span className="text-xs font-mono text-slate-500 dark:text-zinc-400">23-Seater Executive</span>

@@ -113,7 +113,7 @@ export const DriverLogin: React.FC<DriverLoginProps> = ({ onLoginSuccess }) => {
 
         {/* Footer Note */}
         <p className="text-center text-[11px] text-slate-500 dark:text-zinc-500 font-mono">
-          Vinoth Travels • TN37aw6052 (23-Seater)
+          Vinoth Travels • TN37AW6052 (23-Seater)
         </p>
       </div>
     </div>

@@ -40,7 +40,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onLoginSuccess }) => {
           </div>
           <h2 className="text-xl md:text-2xl font-bold font-sans text-slate-900 dark:text-zinc-50 tracking-tight">Fleet Admin Portal</h2>
           <p className="text-xs text-slate-500 dark:text-zinc-400 font-mono">
-            Vinoth Travels • TN37aw6052 (23-Seater)
+            Vinoth Travels • TN37AW6052 (23-Seater)
           </p>
         </div>
 

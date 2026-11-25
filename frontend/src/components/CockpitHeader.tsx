@@ -35,7 +35,7 @@ export const CockpitHeader: React.FC<HeaderProps> = ({
                 {t.appName}
               </span>
               <span className="text-xs px-2 py-0.5 rounded-md bg-slate-100 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 text-slate-700 dark:text-zinc-300 font-mono font-medium">
-                TN37aw6052
+                TN37AW6052
               </span>
             </div>
             <div className="flex items-center space-x-1.5 text-[11px] text-slate-500 dark:text-zinc-400 truncate">

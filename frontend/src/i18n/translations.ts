@@ -191,7 +191,7 @@ export const translations: Record<Language, Translations> = {
     appName: 'Vinoth Travels',
     driverPwa: 'Driver PWA',
     adminPortal: 'Admin Portal',
-    busSubtitle: 'TN37aw6052 (23-Seater)',
+    busSubtitle: 'TN37AW6052 (23-Seater)',
     coachName: 'Ashok Leyland Lynx Tourer',
     scanQr: 'Scan QR Code to launch on Driver Mobile',
 
@@ -368,7 +368,7 @@ export const translations: Record<Language, Translations> = {
     appName: 'Vinoth Travels',
     driverPwa: 'ஓட்டுநர் தளம்',
     adminPortal: 'நிர்வாக தளம்',
-    busSubtitle: 'TN37aw6052 (23 இருக்கைகள்)',
+    busSubtitle: 'TN37AW6052 (23 இருக்கைகள்)',
     coachName: 'அசோக் லேலண்ட் லின்க்ஸ் டூரர்',
     scanQr: 'மொபைலில் திறக்க QR குறியீட்டை ஸ்கேன் செய்யவும்',
 

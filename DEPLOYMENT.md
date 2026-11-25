@@ -66,7 +66,7 @@ This guide walks you through deploying **FleetOS** to production using **Render*
 1. **Admin Portal**:
    - Access `https://your-vercel-domain.vercel.app/#admin`.
    - Log in with `admin` and your configured `ADMIN_PASSWORD`.
-   - Check vehicle status (`TN37aw6052`, 23-Seater Tourist Coach), calendar tour schedules, and P&L metrics.
+   - Check vehicle status (`TN37AW6052`, 23-Seater Tourist Coach), calendar tour schedules, and P&L metrics.
 2. **Driver Cockpit**:
    - Access `https://your-vercel-domain.vercel.app/#driver`.
    - Log in with driver credentials (e.g., `senthilraja` / `senthilraja123`).

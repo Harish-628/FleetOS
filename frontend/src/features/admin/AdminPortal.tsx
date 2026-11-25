@@ -193,7 +193,7 @@ export const AdminPortal: React.FC = () => {
             <div className="text-xl md:text-2xl font-bold font-mono text-slate-900 dark:text-zinc-50 mt-1 tabular-nums">
               {totalKmRun.toLocaleString()} KM
             </div>
-            <div className="text-[11px] text-slate-500 dark:text-zinc-400 mt-1">TN37aw6052 • 23-Seater</div>
+            <div className="text-[11px] text-slate-500 dark:text-zinc-400 mt-1">TN37AW6052 • 23-Seater</div>
           </div>
         </div>
 
