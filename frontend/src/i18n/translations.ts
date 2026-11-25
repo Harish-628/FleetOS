@@ -8,6 +8,14 @@ export interface Translations {
   busSubtitle: string;
   coachName: string;
   scanQr: string;
+  signOut: string;
+  unifiedLoginHeading: string;
+  unifiedLoginSubheading: string;
+  userIdLabel: string;
+  userIdPlaceholder: string;
+  passwordLabel: string;
+  roleDetectedAdmin: string;
+  roleDetectedDriver: string;
 
   // Language Toggle
   langToggle: string;
@@ -189,11 +197,19 @@ export interface Translations {
 export const translations: Record<Language, Translations> = {
   en: {
     appName: 'Vinoth Travels',
-    driverPwa: 'Driver PWA',
+    driverPwa: 'Driver Cockpit',
     adminPortal: 'Admin Portal',
-    busSubtitle: 'TN37AW6052 (23-Seater)',
-    coachName: 'Ashok Leyland Lynx Tourer',
+    busSubtitle: 'Executive 23-Seater Fleet',
+    coachName: 'Executive Luxury Edition',
     scanQr: 'Scan QR Code to launch on Driver Mobile',
+    signOut: 'Sign Out',
+    unifiedLoginHeading: 'Operations Portal',
+    unifiedLoginSubheading: 'Enter User ID to access Driver Cockpit or Admin Console',
+    userIdLabel: 'User ID / Driver ID',
+    userIdPlaceholder: 'e.g. senthilraja or admin',
+    passwordLabel: 'Password',
+    roleDetectedAdmin: 'Executive Admin Console',
+    roleDetectedDriver: 'Driver Operations Cockpit',
 
     langToggle: 'EN | தமிழ்',
     currentLangName: 'English',
@@ -368,9 +384,17 @@ export const translations: Record<Language, Translations> = {
     appName: 'Vinoth Travels',
     driverPwa: 'ஓட்டுநர் தளம்',
     adminPortal: 'நிர்வாக தளம்',
-    busSubtitle: 'TN37AW6052 (23 இருக்கைகள்)',
-    coachName: 'அசோக் லேலண்ட் லின்க்ஸ் டூரர்',
+    busSubtitle: '23-சீட்டர் சொகுசு பேருந்து',
+    coachName: 'சொகுசு பதிப்பு',
     scanQr: 'மொபைலில் திறக்க QR குறியீட்டை ஸ்கேன் செய்யவும்',
+    signOut: 'வெளியேறு',
+    unifiedLoginHeading: 'இயக்க தளம்',
+    unifiedLoginSubheading: 'ஓட்டுநர் அல்லது நிர்வாக தளத்திற்கு நுழைய பயனர் ஐடி உள்ளிடவும்',
+    userIdLabel: 'பயனர் ஐடி / ஓட்டுநர் ஐடி',
+    userIdPlaceholder: 'உ.ம். senthilraja அல்லது admin',
+    passwordLabel: 'கடவுச்சொல்',
+    roleDetectedAdmin: 'தலைமை நிர்வாக தளம்',
+    roleDetectedDriver: 'ஓட்டுநர் இயக்க தளம்',
 
     langToggle: 'தமிழ் | EN',
     currentLangName: 'தமிழ்',

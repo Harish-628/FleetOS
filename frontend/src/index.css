@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --font-headline: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    --font-headline: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
     --font-body: 'Plus Jakarta Sans', -apple-system, sans-serif;
     --font-telemetry: 'JetBrains Mono', monospace;
   }
@@ -13,10 +13,20 @@
     font-family: var(--font-body);
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+    background-color: #F5F7FC;
+    background-image: radial-gradient(1200px circle at 50% -100px, rgba(226, 232, 245, 0.8) 0%, rgba(245, 247, 252, 1) 100%);
+    background-attachment: fixed;
+  }
+
+  :is(.dark body) {
+    background-color: #0A0E1A;
+    background-image: radial-gradient(1200px circle at 50% -100px, rgba(23, 35, 60, 0.6) 0%, rgba(10, 14, 26, 1) 100%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-headline);
+    letter-spacing: -0.02em;
   }
 
   .font-mono, .telemetry-val {
@@ -39,69 +49,71 @@
   padding-top: env(safe-area-inset-top, 0px);
 }
 
-/* Clean Commercial Fleet ERP Component Classes */
+/* Elite Luxury Fleet ERP Component Classes */
 .cockpit-card {
   background-color: #FFFFFF;
-  border: 1px solid #E2E8F0;
-  border-radius: 0.5rem;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 0.875rem;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.03);
 }
 
 :is(.dark .cockpit-card) {
-  background-color: #18181B;
-  border-color: #27272A;
+  background-color: #101626;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .cockpit-btn-primary {
   min-height: 48px;
-  background-color: #0F766E;
+  background: linear-gradient(135deg, #0F766E 0%, #115E59 100%);
   color: #FFFFFF;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.9375rem;
-  border-radius: 0.375rem;
+  letter-spacing: 0.01em;
+  border-radius: 0.625rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid transparent;
-  transition: background-color 0.15s ease, transform 0.05s ease;
+  border: 1px solid rgba(20, 184, 166, 0.25);
+  box-shadow: 0 4px 14px 0 rgba(15, 118, 110, 0.25);
+  transition: all 0.15s ease;
   user-select: none;
 }
 
 :is(.dark .cockpit-btn-primary) {
-  background-color: #14B8A6;
-  color: #09090B;
+  background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
+  color: #042F2E;
+  border-color: rgba(45, 212, 191, 0.3);
+  box-shadow: 0 4px 18px 0 rgba(20, 184, 166, 0.3);
 }
 
 .cockpit-btn-primary:hover {
-  background-color: #115E59;
-}
-
-:is(.dark .cockpit-btn-primary:hover) {
-  background-color: #2DD4BF;
+  filter: brightness(1.08);
 }
 
 .cockpit-btn-primary:active {
-  transform: scale(0.99);
+  transform: scale(0.985);
 }
 
 .cockpit-btn-secondary {
   min-height: 48px;
-  background-color: #F1F5F9;
+  background-color: #F1F4F9;
   color: #0F172A;
   border: 1px solid #CBD5E1;
   font-weight: 600;
   font-size: 0.875rem;
-  border-radius: 0.375rem;
+  border-radius: 0.625rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  transition: all 0.15s ease;
   user-select: none;
 }
 
 :is(.dark .cockpit-btn-secondary) {
-  background-color: #27272A;
-  color: #FAFAFA;
-  border-color: #3F3F46;
+  background-color: #172033;
+  color: #F1F5F9;
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .cockpit-btn-secondary:hover {
@@ -109,14 +121,14 @@
 }
 
 :is(.dark .cockpit-btn-secondary:hover) {
-  background-color: #3F3F46;
+  background-color: #1E2B45;
 }
 
 .cockpit-input {
   min-height: 48px;
   background-color: #FFFFFF;
   border: 1px solid #CBD5E1;
-  border-radius: 0.375rem;
+  border-radius: 0.625rem;
   padding: 0 0.875rem;
   color: #0F172A;
   font-size: 1rem;
@@ -124,20 +136,42 @@
 }
 
 :is(.dark .cockpit-input) {
-  background-color: #18181B;
-  border-color: #27272A;
+  background-color: #0D1322;
+  border-color: rgba(255, 255, 255, 0.1);
   color: #FAFAFA;
 }
 
 .cockpit-input:focus {
   outline: none;
-  border-color: #0F766E;
-  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.2);
+  border-color: #D97706;
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.18);
 }
 
 :is(.dark .cockpit-input:focus) {
-  border-color: #14B8A6;
-  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.25);
+  border-color: #F59E0B;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.22);
+}
+
+/* Luxury Registration Plate Badge */
+.vehicle-plate-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-telemetry);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+  border: 1px solid #F59E0B;
+  color: #78350F;
+  box-shadow: 0 1px 3px rgba(180, 83, 9, 0.15);
+}
+
+:is(.dark .vehicle-plate-badge) {
+  background: linear-gradient(135deg, rgba(120, 53, 15, 0.4) 0%, rgba(69, 26, 3, 0.6) 100%);
+  border-color: rgba(245, 158, 11, 0.5);
+  color: #FDE68A;
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.12);
 }
 
 /* Tabular Status Badge Animations */
@@ -154,4 +188,14 @@
 
 .pulse-dot {
   animation: pulse-emerald 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes shake-anim {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+.animate-shake {
+  animation: shake-anim 0.35s ease-in-out;
 }

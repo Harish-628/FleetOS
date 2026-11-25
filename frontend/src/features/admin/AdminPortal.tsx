@@ -28,11 +28,11 @@ import {
   type DriverApiItem,
 } from '../../lib/api';
 import { formatINR, formatDate, formatDateTime, triggerDriverHaptic } from '../../lib/formatters';
-import { AdminLogin } from './AdminLogin';
+import { UnifiedLogin } from '../auth/UnifiedLogin';
 import { FullMonthCalendar } from '../../components/FullMonthCalendar';
 import { AdvanceTourNotificationBanner } from '../../components/AdvanceTourNotificationBanner';
 
-export const AdminPortal: React.FC = () => {
+export const AdminPortal: React.FC<{ onLogout?: () => void }> = ({ onLogout }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => Boolean(api.getAdminToken()));
   const [activeTab, setActiveTab] = useState<'pnl' | 'vault' | 'compliance' | 'calendar' | 'drivers'>('pnl');
 
@@ -115,14 +115,19 @@ export const AdminPortal: React.FC = () => {
     triggerDriverHaptic([40]);
     api.clearAdminToken();
     setIsAuthenticated(false);
+    if (onLogout) onLogout();
   };
 
   if (!isAuthenticated) {
     return (
-      <AdminLogin
-        onLoginSuccess={() => {
-          setIsAuthenticated(true);
-          loadAdminData();
+      <UnifiedLogin
+        onLoginSuccess={(role) => {
+          if (role === 'admin') {
+            setIsAuthenticated(true);
+            loadAdminData();
+          } else {
+            onLogout?.();
+          }
         }}
       />
     );

@@ -25,11 +25,11 @@ import { triggerDriverHaptic } from '../../lib/formatters';
 import { api, type DriverSession } from '../../lib/api';
 import { useLanguage } from '../../i18n/LanguageContext';
 import { VoiceInputField } from '../../components/VoiceInputField';
-import { DriverLogin } from './DriverLogin';
 import { FullMonthCalendar } from '../../components/FullMonthCalendar';
+import { UnifiedLogin } from '../auth/UnifiedLogin';
 import { AdvanceTourNotificationBanner } from '../../components/AdvanceTourNotificationBanner';
 
-export const DriverDashboard: React.FC = () => {
+export const DriverDashboard: React.FC<{ onLogout?: () => void }> = ({ onLogout }) => {
   const { t } = useLanguage();
 
   // Driver Authentication Session
@@ -385,9 +385,13 @@ export const DriverDashboard: React.FC = () => {
 
   if (!driverSession) {
     return (
-      <DriverLogin
-        onLoginSuccess={(session) => {
-          setDriverSessionState(session);
+      <UnifiedLogin
+        onLoginSuccess={(role, session) => {
+          if (role === 'driver' && session) {
+            setDriverSessionState(session);
+          } else {
+            onLogout?.();
+          }
         }}
       />
     );
@@ -399,6 +403,7 @@ export const DriverDashboard: React.FC = () => {
     triggerDriverHaptic([40]);
     api.clearDriverSession();
     setDriverSessionState(null);
+    if (onLogout) onLogout();
   };
 
   return (
