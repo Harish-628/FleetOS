@@ -75,7 +75,7 @@ class SyncEngine {
         const slots: DriverCalendarSlot[] = await api.getDriverSlots();
         if (slots && slots.length > 0) {
           const now = new Date().toISOString();
-          const itemsToSave: LocalCalendarSlot[] = slots.map((s: DriverCalendarSlot) => ({
+          const itemsToSave: LocalCalendarSlot[] = slots.map((s: any) => ({
             id: s.id,
             summary: s.summary,
             customer_name: s.customer_name,
@@ -153,7 +153,7 @@ class SyncEngine {
         client_device_id: 'driver-cockpit-pwa',
         batch_id: generateUUID(),
         sent_at: new Date().toISOString(),
-        events: pendingItems.map((item) => ({
+        events: pendingItems.map((item: LocalSyncQueueItem) => ({
           client_event_id: item.client_event_id,
           event_type: item.event_type,
           recorded_at: item.recorded_at,
